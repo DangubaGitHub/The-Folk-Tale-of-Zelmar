@@ -11,6 +11,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float runSpeed;
     [SerializeField] float jumpForce;
 
+    bool isGrounded;
+    [SerializeField] Transform groundPoint;
+    [SerializeField] LayerMask whatIsGround;
+
 
     private void Awake()
     {
@@ -26,9 +30,14 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRb.velocity = new Vector2(walkSpeed * Input.GetAxis("Horizontal"), playerRb.velocity.y);
 
+        isGrounded = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
+
         if(Input.GetButtonDown("Jump"))
         {
-            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpForce);
+            if (isGrounded)
+            {
+                playerRb.velocity = new Vector2(playerRb.velocity.x, jumpForce);
+            }
         }
     }
 }
