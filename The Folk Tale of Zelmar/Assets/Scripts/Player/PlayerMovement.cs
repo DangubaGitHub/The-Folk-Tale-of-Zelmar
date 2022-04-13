@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    Rigidbody2D playerRb;
 
-    Vector2 moveInput;
-
+    [Header("Movement Attributes")] 
     [SerializeField] float walkSpeed;
     [SerializeField] float runSpeed;
+    [SerializeField] float jumpForce;
 
-    Rigidbody2D playerRb;
 
     private void Awake()
     {
@@ -25,17 +24,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Walk();
-    }
+        playerRb.velocity = new Vector2(walkSpeed * Input.GetAxis("Horizontal"), playerRb.velocity.y);
 
-    void OnMove(InputValue value)
-    {
-        moveInput = value.Get<Vector2>();
-    }
-
-    void Walk()
-    {
-        Vector2 playerWalkVelocity = new Vector2(moveInput.x * walkSpeed, playerRb.velocity.y);
-        playerRb.velocity = playerWalkVelocity;
+        if(Input.GetButtonDown("Jump"))
+        {
+            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpForce);
+        }
     }
 }
