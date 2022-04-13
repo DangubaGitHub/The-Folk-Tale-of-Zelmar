@@ -4019,6 +4019,7 @@ GameObject:
   - component: {fileID: 2007949887}
   - component: {fileID: 2007949884}
   - component: {fileID: 2007949888}
+  - component: {fileID: 2007949889}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -4101,13 +4102,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007949881}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dead451e1f23b774b94764618ade1116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 6
-  runSpeed: 0
+  runSpeed: 12
   jumpForce: 15
   groundPoint: {fileID: 1914056062}
   whatIsGround:
@@ -4125,7 +4126,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 90
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5
@@ -4170,3 +4171,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2007949889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007949881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79df86475eb464b419c9854884e497f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 200
+  sprintMultiplier: 1.75
+  sprintDelay: 1.5
+  initialJumpForce: 700
+  extraJumpForce: 15
+  maxExtraJumpTime: 0.35
+  delayToExtraJumpForce: 0
+  groundPoint: {fileID: 1914056062}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
