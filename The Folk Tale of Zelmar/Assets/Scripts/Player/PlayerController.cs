@@ -36,14 +36,16 @@ public class PlayerController : MonoBehaviour
 
 	string currentState;
 
-	bool atMaxSpeed = false;
+	bool atMaxSpeed;
 
 	private void Awake()
     {
 		playerRb = GetComponent<Rigidbody2D>();
 		playerSr = GetComponent<SpriteRenderer>();
 		playerAnim = GetComponent<Animator>();
-    }
+
+		atMaxSpeed = false;
+	}
 
     void Update()
 	{
@@ -77,14 +79,20 @@ public class PlayerController : MonoBehaviour
         {
 			playerSr.flipX = false;
         }
+
+		
 	}
 
 	void FixedUpdate()
 	{
 		if (Input.GetButton("Run") && Time.time - sprintTimer > sprintDelay && isGrounded || jumpedDuringSprint)
 		{
+			
+
 			atMaxSpeed = true;
 			playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime * sprintMultiplier, playerRb.velocity.y);
+
+			
 
 			if (playerJumped)
 			{
@@ -98,10 +106,10 @@ public class PlayerController : MonoBehaviour
 			playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime, playerRb.velocity.y);
 		}
 
-		if (isGrounded && atMaxSpeed)
-		{
-			ChangeAnimationState(RUN);
-		}
+		//if (isGrounded && atMaxSpeed)
+		//{
+		//	ChangeAnimationState(RUN);
+		//}
 
 		if (playerJumped)
 		{
@@ -126,17 +134,21 @@ public class PlayerController : MonoBehaviour
 
 		if (isGrounded)
 		{
-			if (playerRb.velocity.x != 0)
+			if (playerRb.velocity.x != 0 && !atMaxSpeed)
 			{
 				ChangeAnimationState(WALK);
 			}
-			else
+			if (playerRb.velocity.x != 0 && atMaxSpeed)
+			{
+				ChangeAnimationState(RUN);
+			}
+			else if(playerRb.velocity.x == 0)
 			{
 				ChangeAnimationState(IDLE);
 			}
 		}
 
-		if(playerRb.velocity.y < 0 && !isGrounded)
+		if (playerRb.velocity.y < 0 && !isGrounded)
         {
 			ChangeAnimationState(FALL);
         }
