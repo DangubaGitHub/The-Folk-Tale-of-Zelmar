@@ -18,12 +18,14 @@ public class PlayerMovement : MonoBehaviour
     bool isRunning;
 
     Animator playerAnim;
+    SpriteRenderer playerSr;
 
 
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnim = GetComponent<Animator>();
+        playerSr = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -59,6 +61,17 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             walkSpeed = 6f;
+
+        if (playerRb.velocity.x < 0)
+        {
+            playerSr.flipX = true;
+            //transform.localScale = new Vector2(-1, 1);
+        }
+        else if (playerRb.velocity.x > 0)
+        {
+            playerSr.flipX = false;
+            //transform.localScale = new Vector2(1, 1);
+        }
     }
 
 

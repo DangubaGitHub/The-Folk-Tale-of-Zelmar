@@ -28,12 +28,24 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Transform groundPoint;
 	[SerializeField] LayerMask whatIsGround;
 
+	const string IDLE = "Player_Idle";
+	const string WALK = "Player_Walk";
+	const string RUN = "Player_Run";
+	const string JUMP = "Player_Jump";
+	const string FALL = "Player_Fall";
+
+	string currentState;
+
+	bool atMaxSpeed;
+
 	private void Awake()
     {
 		playerRb = GetComponent<Rigidbody2D>();
 		playerSr = GetComponent<SpriteRenderer>();
 		playerAnim = GetComponent<Animator>();
-    }
+
+		atMaxSpeed = false;
+	}
 
     void Update()
 	{
@@ -41,6 +53,8 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
+			ChangeAnimationState(JUMP);
+
 			playerJumped = true; 
 			playerJumping = true; 
 			jumpTimer = Time.time;
@@ -55,85 +69,97 @@ public class PlayerController : MonoBehaviour
 		{
 			sprintTimer = Time.time;
 			jumpedDuringSprint = false;
-
-			playerAnim.SetBool("isWalking", true);
-			playerAnim.SetBool("isRunning", false);
-		}
-		else
-		{
-			playerAnim.SetBool("isRunning", false);
-			playerAnim.SetBool("isWalking", false);
 		}
 
-		if (playerRb.velocity.x <0)
+		if (playerRb.velocity.x < -0.1f)
         {
 			playerSr.flipX = true;
-        }
-		else if(playerRb.velocity.x > 0)
+		}
+		else if (playerRb.velocity.x > 0.1f)
         {
 			playerSr.flipX = false;
         }
 
-		SetAnimations();
+		
 	}
 
 	void FixedUpdate()
 	{
 		if (Input.GetButton("Run") && Time.time - sprintTimer > sprintDelay && isGrounded || jumpedDuringSprint)
 		{
+			
+
+			atMaxSpeed = true;
 			playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime * sprintMultiplier, playerRb.velocity.y);
 
-		
-				playerAnim.SetBool("isWalking", false);
-				playerAnim.SetBool("isRunning", true);
-
-				playerAnim.SetBool("isJumping", false);
-				playerAnim.SetBool("isFaling", false);
-
+			
 
 			if (playerJumped)
 			{
 				jumpedDuringSprint = true; 
 			}
 		}
+
 		else
 		{
+			atMaxSpeed = false;
 			playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime, playerRb.velocity.y);
-
 		}
+
+		//if (isGrounded && atMaxSpeed)
+		//{
+		//	ChangeAnimationState(RUN);
+		//}
 
 		if (playerJumped)
 		{
+			
 			playerRb.AddForce(new Vector2(0, initialJumpForce));
+
+			if (!isGrounded)
+			{
+				ChangeAnimationState(JUMP);
+			}
 			playerJumped = false;
 		}
 
 		if (playerJumping && Time.time - jumpTimer > delayToExtraJumpForce)
 		{
 			playerRb.AddForce(new Vector2(0, extraJumpForce));
+			if (!isGrounded)
+			{
+				ChangeAnimationState(JUMP);
+			}
 		}
+
+		if (isGrounded)
+		{
+			if (playerRb.velocity.x != 0 && !atMaxSpeed)
+			{
+				ChangeAnimationState(WALK);
+			}
+			if (playerRb.velocity.x != 0 && atMaxSpeed)
+			{
+				ChangeAnimationState(RUN);
+			}
+			else if(playerRb.velocity.x == 0)
+			{
+				ChangeAnimationState(IDLE);
+			}
+		}
+
+		if (playerRb.velocity.y < 0 && !isGrounded)
+        {
+			ChangeAnimationState(FALL);
+        }
 	}
 
-	void SetAnimations()
+	void ChangeAnimationState(string newState)
     {
-		if(playerRb.velocity.y == 0 && isGrounded)
-        {
-			playerAnim.SetBool("isJumping", false);
-			playerAnim.SetBool("isFaling", false);
-		}
+		if (currentState == newState) return;
 
-		if(playerRb.velocity.y > 0f && !isGrounded)
-        {
-			playerAnim.SetBool("isJumping", true);
-        }
+		playerAnim.Play(newState);
 
-		if (playerRb.velocity.y < 0f && !isGrounded)
-		{
-			playerAnim.SetBool("isJumping", false);
-			playerAnim.SetBool("isFaling", true);
-		}
-		else
-			isGrounded = true;
-		
+		currentState = newState;
     }
 }
