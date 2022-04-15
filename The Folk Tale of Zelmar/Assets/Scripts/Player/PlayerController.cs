@@ -22,10 +22,12 @@ public class PlayerController : MonoBehaviour
 	private bool playerJumping;         
      
 	private bool isGrounded;
+	bool isHittingCeiling;
 	SpriteRenderer playerSr;
 	Animator playerAnim;
 
 	[SerializeField] Transform groundPoint;
+	[SerializeField] Transform ceilingPoint;
 	[SerializeField] LayerMask whatIsGround;
 
 	const string IDLE = "Player_Idle";
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
 	const string RUN = "Player_Run";
 	const string JUMP = "Player_Jump";
 	const string FALL = "Player_Fall";
+	const string HEADBUTT = "Player_Headbutt";
 
 	string currentState;
 
@@ -50,6 +53,13 @@ public class PlayerController : MonoBehaviour
     void Update()
 	{
 		isGrounded = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
+
+		isHittingCeiling = Physics2D.OverlapCircle(ceilingPoint.position, .2f, whatIsGround);
+
+		if (playerRb.velocity.y > 0.1)
+		{
+			isGrounded = false;
+		}
 
 		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
@@ -126,6 +136,7 @@ public class PlayerController : MonoBehaviour
 		if (playerJumping && Time.time - jumpTimer > delayToExtraJumpForce)
 		{
 			playerRb.AddForce(new Vector2(0, extraJumpForce));
+
 			if (!isGrounded)
 			{
 				ChangeAnimationState(JUMP);
@@ -150,6 +161,7 @@ public class PlayerController : MonoBehaviour
 
 		if (playerRb.velocity.y < 0 && !isGrounded)
         {
+			
 			ChangeAnimationState(FALL);
         }
 	}
