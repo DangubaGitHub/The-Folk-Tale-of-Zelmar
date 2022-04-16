@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bd2d8482e595ff746b578b9fca01a4cc
+guid: df75b3d8b1403a047b0de1808e26b21a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Water Background Animation 1_0
+      name: Water FG Anim 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4a160b8402bf1144ae7a6c4b8f28484
-      internalID: -700381758
+      spriteID: 738bf54124e1f95499a43e951309b452
+      internalID: -623170227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water Background Animation 1_1
+      name: Water FG Anim 1_1
       rect:
         serializedVersion: 2
         x: 8
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffa5756fe35b0bc499e0901cb0865332
-      internalID: -1595057861
+      spriteID: 7c8850f2be39cb34e8fe29bd4f285b2e
+      internalID: 911634898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water Background Animation 1_2
+      name: Water FG Anim 1_2
       rect:
         serializedVersion: 2
         x: 16
@@ -172,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2507a6289d046014493f39edfe065799
-      internalID: 2121060104
+      spriteID: 8891cc04f79c0404d9c83459f2f9f664
+      internalID: -977290991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water Background Animation 1_3
+      name: Water FG Anim 1_3
       rect:
         serializedVersion: 2
         x: 24
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d97e607b5774ee2499c629536eb77cde
-      internalID: -951456473
+      spriteID: 3f147a54b7fb4464fa257fb8adec14b7
+      internalID: 1260060077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water Background Animation 1_4
+      name: Water FG Anim 1_4
       rect:
         serializedVersion: 2
         x: 32
@@ -214,14 +214,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd675ace5f5fe664196a6e57f7de7843
-      internalID: -89009240
+      spriteID: b64af4f0b4c3aba4da58a7bca9d8b678
+      internalID: -868238913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water Background Animation 1_5
+      name: Water FG Anim 1_5
       rect:
         serializedVersion: 2
         x: 40
@@ -235,14 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8aec0f2c0efeaa40a0334663a0ed03e
-      internalID: -463742610
+      spriteID: 06fb8bc683c56b848962b7959c25f521
+      internalID: 1455649065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water Background Animation 1_6
+      name: Water FG Anim 1_6
       rect:
         serializedVersion: 2
         x: 48
@@ -256,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 918c28df661cd134382b257fc19af05f
-      internalID: -919979160
+      spriteID: 089b3445f777c674c8aa2cb4044ef63c
+      internalID: -636526541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water Background Animation 1_7
+      name: Water FG Anim 1_7
       rect:
         serializedVersion: 2
         x: 56
@@ -277,29 +277,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f040e04e616ef8c4cb5210c2862968ff
-      internalID: -1868207007
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Water Background Animation 1_8
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e50bb6c22b7472e498b3050feeea81b8
-      internalID: 41088487
+      spriteID: e90ad5d01da4ce242865e2bd4df8a16f
+      internalID: -587700095
       vertices: []
       indices: 
       edges: []
@@ -315,15 +294,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Water Background Animation 1_4: -89009240
-      Water Background Animation 1_6: -919979160
-      Water Background Animation 1_8: 41088487
-      Water Background Animation 1_5: -463742610
-      Water Background Animation 1_7: -1868207007
-      Water Background Animation 1_2: 2121060104
-      Water Background Animation 1_0: -700381758
-      Water Background Animation 1_1: -1595057861
-      Water Background Animation 1_3: -951456473
+      Water FG Anim 1_6: -636526541
+      Water FG Anim 1_3: 1260060077
+      Water FG Anim 1_7: -587700095
+      Water FG Anim 1_2: -977290991
+      Water FG Anim 1_5: 1455649065
+      Water FG Anim 1_0: -623170227
+      Water FG Anim 1_1: 911634898
+      Water FG Anim 1_4: -868238913
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
