@@ -4,9 +4,12 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+	[SerializeField] Water waterScript;
 	Rigidbody2D playerRb;
 	
 	public float moveSpeed;
+	[SerializeField] float underwaterMoveSpeed;
+	[SerializeField] float swimSpeed;
 
 	public float sprintMultiplier; 
 	public float sprintDelay;      
@@ -21,7 +24,7 @@ public class PlayerController : MonoBehaviour
 	private bool playerJumped;         
 	private bool playerJumping;         
      
-	private bool isGrounded;
+	public bool isGrounded;
 	bool isHittingCeiling;
 	SpriteRenderer playerSr;
 	Animator playerAnim;
@@ -41,130 +44,157 @@ public class PlayerController : MonoBehaviour
 
 	bool atMaxSpeed;
 
+	public bool inWater;
+	public bool onLand;
+
 	private void Awake()
     {
 		playerRb = GetComponent<Rigidbody2D>();
 		playerSr = GetComponent<SpriteRenderer>();
 		playerAnim = GetComponent<Animator>();
+	}
 
+    private void Start()
+    {
 		atMaxSpeed = false;
+		inWater = false;
+		onLand = true;
 	}
 
     void Update()
 	{
-		isGrounded = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
-
-		isHittingCeiling = Physics2D.OverlapCircle(ceilingPoint.position, .2f, whatIsGround);
-
-		if (playerRb.velocity.y > 0.1)
+		if (onLand)
 		{
-			isGrounded = false;
+			isGrounded = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
+
+			isHittingCeiling = Physics2D.OverlapCircle(ceilingPoint.position, .2f, whatIsGround);
+
+			if (playerRb.velocity.y > 0.1)
+			{
+				isGrounded = false;
+			}
+
+			if (Input.GetButtonDown("Jump") && isGrounded)
+			{
+				ChangeAnimationState(JUMP);
+
+				playerJumped = true;
+				playerJumping = true;
+				jumpTimer = Time.time;
+			}
+
+			if (Input.GetButtonUp("Jump") || Time.time - jumpTimer > maxExtraJumpTime)
+			{
+				playerJumping = false;
+			}
+
+			if (Input.GetButtonDown("Horizontal"))
+			{
+				sprintTimer = Time.time;
+				jumpedDuringSprint = false;
+			}
+
+			if (playerRb.velocity.x < -0.1f)
+			{
+				playerSr.flipX = true;
+			}
+			else if (playerRb.velocity.x > 0.1f)
+			{
+				playerSr.flipX = false;
+			}
 		}
-
-		if (Input.GetButtonDown("Jump") && isGrounded)
-		{
-			ChangeAnimationState(JUMP);
-
-			playerJumped = true; 
-			playerJumping = true; 
-			jumpTimer = Time.time;
-		}
-
-		if (Input.GetButtonUp("Jump") || Time.time - jumpTimer > maxExtraJumpTime)
-		{
-			playerJumping = false;
-		}
-
-		if (Input.GetButtonDown("Horizontal"))
-		{
-			sprintTimer = Time.time;
-			jumpedDuringSprint = false;
-		}
-
-		if (playerRb.velocity.x < -0.1f)
-        {
-			playerSr.flipX = true;
-		}
-		else if (playerRb.velocity.x > 0.1f)
-        {
-			playerSr.flipX = false;
-        }
-
 		
 	}
 
 	void FixedUpdate()
 	{
-		if (Input.GetButton("Run") && Time.time - sprintTimer > sprintDelay && isGrounded || jumpedDuringSprint)
+		if (onLand)
 		{
-			
+			if (Input.GetButton("Run") && Time.time - sprintTimer > sprintDelay && isGrounded || jumpedDuringSprint)
+			{
+				atMaxSpeed = true;
+				playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime * sprintMultiplier, playerRb.velocity.y);
 
-			atMaxSpeed = true;
-			playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime * sprintMultiplier, playerRb.velocity.y);
+				if (playerJumped)
+				{
+					jumpedDuringSprint = true;
+				}
+			}
 
-			
+			else
+			{
+				atMaxSpeed = false;
+				playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime, playerRb.velocity.y);
+			}
 
 			if (playerJumped)
 			{
-				jumpedDuringSprint = true; 
+				playerRb.AddForce(new Vector2(0, initialJumpForce));
+
+				if (!isGrounded)
+				{
+					ChangeAnimationState(JUMP);
+				}
+				playerJumped = false;
+			}
+
+			if (playerJumping && Time.time - jumpTimer > delayToExtraJumpForce)
+			{
+				playerRb.AddForce(new Vector2(0, extraJumpForce));
+
+				if (!isGrounded)
+				{
+					ChangeAnimationState(JUMP);
+				}
+			}
+
+			if (isGrounded)
+			{
+				if (playerRb.velocity.x != 0 && !atMaxSpeed)
+				{
+					ChangeAnimationState(WALK);
+				}
+				if (playerRb.velocity.x != 0 && atMaxSpeed)
+				{
+					ChangeAnimationState(RUN);
+				}
+				else if (playerRb.velocity.x == 0)
+				{
+					ChangeAnimationState(IDLE);
+				}
+			}
+
+			if (playerRb.velocity.y < 0 && !isGrounded)
+			{
+				ChangeAnimationState(FALL);
 			}
 		}
 
-		else
-		{
-			atMaxSpeed = false;
-			playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime, playerRb.velocity.y);
-		}
-
-		//if (isGrounded && atMaxSpeed)
-		//{
-		//	ChangeAnimationState(RUN);
-		//}
-
-		if (playerJumped)
-		{
-			
-			playerRb.AddForce(new Vector2(0, initialJumpForce));
-
-			if (!isGrounded)
-			{
-				ChangeAnimationState(JUMP);
-			}
-			playerJumped = false;
-		}
-
-		if (playerJumping && Time.time - jumpTimer > delayToExtraJumpForce)
-		{
-			playerRb.AddForce(new Vector2(0, extraJumpForce));
-
-			if (!isGrounded)
-			{
-				ChangeAnimationState(JUMP);
-			}
-		}
-
-		if (isGrounded)
-		{
-			if (playerRb.velocity.x != 0 && !atMaxSpeed)
-			{
-				ChangeAnimationState(WALK);
-			}
-			if (playerRb.velocity.x != 0 && atMaxSpeed)
-			{
-				ChangeAnimationState(RUN);
-			}
-			else if(playerRb.velocity.x == 0)
-			{
-				ChangeAnimationState(IDLE);
-			}
-		}
-
-		if (playerRb.velocity.y < 0 && !isGrounded)
+		if(inWater)
         {
-			
-			ChangeAnimationState(FALL);
-        }
+			playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * underwaterMoveSpeed * Time.deltaTime, playerRb.velocity.y);
+
+			if (Input.GetButtonDown("Jump"))
+            {
+				playerRb.AddForce(new Vector2(0, swimSpeed));
+			}
+
+
+		}
 	}
+
+	private void OnTriggerStay2D(Collider2D other)
+	{
+		if (other.CompareTag("Water"))
+		{
+			inWater = true;
+			Debug.Log("hello");
+		}
+		else
+			onLand = true;
+	}
+
+	
 
 	void ChangeAnimationState(string newState)
     {
