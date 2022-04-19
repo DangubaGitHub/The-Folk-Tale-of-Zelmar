@@ -1480,6 +1480,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Summer Tileset_61
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e6cb260f615cd4d996a74ce3c08bb5
+      internalID: -1294523121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Summer Tileset_62
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1833ff0fcebc1c4d992a94d34437c75
+      internalID: -1217968854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Summer Tileset_63
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517d34c65991aed4eaa543db0be12929
+      internalID: 1161563746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Summer Tileset_64
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf0f663a44c477b44b79f8080c795c52
+      internalID: 243044972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Summer Tileset_65
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a9e7e021a53eb74c8f465a2b8a14170
+      internalID: -1902042552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1511,6 +1616,8 @@ TextureImporter:
       Summer Tileset_58: 664783689
       Summer Tileset_6: -2049769813
       Summer Tileset_44: 1374032549
+      Summer Tileset_65: -1902042552
+      Summer Tileset_61: -1294523121
       Summer Tileset_26: 186463521
       Summer Tileset_14: -708928914
       Summer Tileset_22: 1632291534
@@ -1525,6 +1632,7 @@ TextureImporter:
       Summer Tileset_36: 526917031
       Summer Tileset_2: -526814682
       Summer Tileset_15: -1363669443
+      Summer Tileset_62: -1217968854
       Summer Tileset_0: -1115490229
       Summer Tileset_54: -1197719813
       Summer Tileset_57: -1187327164
@@ -1540,11 +1648,13 @@ TextureImporter:
       Summer Tileset_7: -1196291833
       Summer Tileset_60: -226155688
       Summer Tileset_53: 1540349788
+      Summer Tileset_64: 243044972
       Summer Tileset_46: 463888512
       Summer Tileset_56: 209397056
       Summer Tileset_40: -248184399
       Summer Tileset_29: 450861859
       Summer Tileset_47: -137278043
+      Summer Tileset_63: 1161563746
       Summer Tileset_12: -1425965589
       Summer Tileset_21: -1026855264
       Summer Tileset_3: 57853172

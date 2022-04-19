@@ -892,6 +892,174 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Desert Tileset_37
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5658615b7e5b1554b9766e295cf8bf6c
+      internalID: -368519084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Desert Tileset_38
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ffd9cc165dee7442ba42d7ff4d7c7ae
+      internalID: 2106304777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Desert Tileset_39
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 629c75028d28eab4a9737973d362afc3
+      internalID: 1445593321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Desert Tileset_40
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 092377b3059d845458688ea9271ebc90
+      internalID: 213069107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Desert Tileset_41
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5c4f034d2a8eda41b343f0c5fd296da
+      internalID: -1907212423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Desert Tileset_42
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 645b176606d1a03438c04fdc11e2165b
+      internalID: 2040983040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Desert Tileset_43
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9aae2c518f1c3d43bdc55d8677422bb
+      internalID: 1157222148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Desert Tileset_44
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81d35cd0b0873804cace2d94285780ef
+      internalID: 1664412541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -903,43 +1071,51 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Desert Tileset_7: 488920533
-      Desert Tileset_8: -1090293724
-      Desert Tileset_25: 727498267
-      Desert Tileset_11: 145809767
       Desert Tileset_29: 1201430353
-      Desert Tileset_32: -1020188010
-      Desert Tileset_19: 1638214061
+      Desert Tileset_39: 1445593321
+      Desert Tileset_41: -1907212423
+      Desert Tileset_11: 145809767
       Desert Tileset_33: -627362083
+      Desert Tileset_19: 1638214061
       Desert Tileset_14: -458282623
-      Desert Tileset_34: 1951255521
       Desert Tileset_28: 75448272
-      Desert Tileset_10: 1346755764
-      Desert Tileset_24: 2111499722
       Desert Tileset_5: 1593286816
       Desert Tileset_30: -2036456995
       Desert Tileset_27: -860055035
       Desert Tileset_6: 97913409
       Desert Tileset_26: 69950375
       Desert Tileset_15: 2135103775
-      Desert Tileset_3: -760242336
       Desert Tileset_4: -2139363699
-      Desert Tileset_0: -1388252413
-      Desert Tileset_2: -682815706
+      Desert Tileset_37: -368519084
+      Desert Tileset_38: 2106304777
       Desert Tileset_12: -1155689927
       Desert Tileset_21: -677079467
       Desert Tileset_13: -1647003273
+      Desert Tileset_31: 1616068437
+      Desert Tileset_36: -1856342647
+      Desert Tileset_22: -145735834
+      Desert Tileset_18: -260966089
+      Desert Tileset_7: 488920533
+      Desert Tileset_8: -1090293724
+      Desert Tileset_25: 727498267
+      Desert Tileset_32: -1020188010
+      Desert Tileset_34: 1951255521
+      Desert Tileset_43: 1157222148
+      Desert Tileset_10: 1346755764
+      Desert Tileset_42: 2040983040
+      Desert Tileset_24: 2111499722
+      Desert Tileset_44: 1664412541
+      Desert Tileset_3: -760242336
+      Desert Tileset_0: -1388252413
+      Desert Tileset_2: -682815706
       Desert Tileset_16: 1233064701
       Desert Tileset_20: 58382039
+      Desert Tileset_40: 213069107
       Desert Tileset_35: 730885927
       Desert Tileset_23: -359340633
       Desert Tileset_1: 2018619154
       Desert Tileset_9: -1376142722
-      Desert Tileset_31: 1616068437
-      Desert Tileset_36: -1856342647
-      Desert Tileset_22: -145735834
       Desert Tileset_17: 584959432
-      Desert Tileset_18: -260966089
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
