@@ -4,9 +4,11 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField] Water waterScript;
+	//[SerializeField] Water waterScript;
 	Rigidbody2D playerRb;
-	
+	SpriteRenderer playerSr;
+	Animator playerAnim;
+
 	public float moveSpeed;
 	[SerializeField] float underwaterMoveSpeed;
 	[SerializeField] float swimSpeed;
@@ -24,13 +26,14 @@ public class PlayerController : MonoBehaviour
 	private bool playerJumped;         
 	private bool playerJumping;         
      
-	public bool isGrounded;
-	bool isHittingCeiling;
-	SpriteRenderer playerSr;
-	Animator playerAnim;
+	[SerializeField] bool isGrounded;
+	[SerializeField] bool inWater;
+	[SerializeField] bool onLand;
+	
 
 	[SerializeField] Transform groundPoint;
-	[SerializeField] Transform ceilingPoint;
+	[SerializeField] Transform waterPoint;
+	[SerializeField] LayerMask whatIsWater;
 	[SerializeField] LayerMask whatIsGround;
 
 	const string IDLE = "Player_Idle";
@@ -44,8 +47,7 @@ public class PlayerController : MonoBehaviour
 
 	bool atMaxSpeed;
 
-	public bool inWater;
-	public bool onLand;
+	
 
 	private void Awake()
     {
@@ -63,11 +65,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
 	{
+		//inWater = Physics2D.OverlapCircle(waterPoint.position, .2f, whatIsWater);
+
+		if(inWater)
+        {
+			onLand = false;
+        }
+
 		if (onLand)
 		{
 			isGrounded = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
 
-			isHittingCeiling = Physics2D.OverlapCircle(ceilingPoint.position, .2f, whatIsGround);
+			
 
 			if (playerRb.velocity.y > 0.1)
 			{
@@ -183,20 +192,17 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerStay2D(Collider2D other)
-	{
-		if (other.CompareTag("Water"))
-		{
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(1 << other.gameObject.layer == whatIsWater)
+        {
 			inWater = true;
-			Debug.Log("hello");
-		}
-		else
-			onLand = true;
-	}
+        }
+    }
 
-	
+    
 
-	void ChangeAnimationState(string newState)
+    void ChangeAnimationState(string newState)
     {
 		if (currentState == newState) return;
 
