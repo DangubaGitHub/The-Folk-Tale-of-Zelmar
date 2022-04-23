@@ -26,8 +26,6 @@ public class Spikes : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-
-            Debug.Log("Damage Taken");
             player_Health_Controller_Script.DealDamage();
         }
     }
