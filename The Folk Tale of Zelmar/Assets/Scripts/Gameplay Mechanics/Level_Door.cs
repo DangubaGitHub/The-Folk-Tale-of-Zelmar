@@ -8,6 +8,7 @@ public class Level_Door : MonoBehaviour
     bool isClosed;
     bool isOpen;
     bool atDoor;
+    public bool hasKey;
 
     Animator doorAnim;
     string currentState;
@@ -34,7 +35,7 @@ public class Level_Door : MonoBehaviour
         {
             if (Input.GetButtonDown("Use"))
             {
-                if (isClosed)
+                if (isClosed && hasKey)
                 {
                     isOpen = true;
                     isClosed = false;
@@ -42,7 +43,7 @@ public class Level_Door : MonoBehaviour
                     Debug.Log("Door Opens");
                 }
 
-                else
+                else if(isClosed && !hasKey)
                 {
                     Debug.Log("Door is Locked");
                 }
