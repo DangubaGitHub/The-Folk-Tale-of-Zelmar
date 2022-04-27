@@ -41,7 +41,8 @@ public class Key_Chest : MonoBehaviour
                 {
                     ChangeAnimationState(OPEN);
                     chestOpen = true;
-                    Instantiate(keyPrefab, keySpawnPoint.position, Quaternion.identity);
+                    GameObject key = Instantiate(keyPrefab, keySpawnPoint.position, Quaternion.identity);
+                    Destroy(key, 1f);
                     level_Door_Script.hasKey = true;
                 }
             }
