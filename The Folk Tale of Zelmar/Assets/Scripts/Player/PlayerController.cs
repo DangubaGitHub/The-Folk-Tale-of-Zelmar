@@ -105,6 +105,7 @@ public class PlayerController : MonoBehaviour
 
 			if (playerRb.velocity.x < -0.1f)
 			{
+				//transform.Rotate(0f, 180f, 0f);
 				playerSr.flipX = true;
 			}
 			else if (playerRb.velocity.x > 0.1f)
