@@ -24,7 +24,7 @@ public class Bomb : MonoBehaviour
 
     void Update()
     {
-        Destroy(gameObject, 2.2f);
+        Destroy(transform.parent.gameObject, 2.2f);
     }
 
     void ChangeAnimationState(string newState)

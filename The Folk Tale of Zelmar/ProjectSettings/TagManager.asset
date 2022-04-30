@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Water
+  - Bomb
+  - Wall_Crack
   layers:
   - Default
   - TransparentFX
