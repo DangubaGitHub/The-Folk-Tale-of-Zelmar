@@ -47,13 +47,15 @@ public class PlayerController : MonoBehaviour
 
 	bool atMaxSpeed;
 
-	
+	[SerializeField] Transform bombPoint;
+	float bombPointPosition;
 
 	private void Awake()
     {
 		playerRb = GetComponent<Rigidbody2D>();
 		playerSr = GetComponent<SpriteRenderer>();
 		playerAnim = GetComponent<Animator>();
+		bombPointPosition = bombPoint.position.x;
 	}
 
     private void Start()
@@ -107,10 +109,13 @@ public class PlayerController : MonoBehaviour
 			{
 				//transform.Rotate(0f, 180f, 0f);
 				playerSr.flipX = true;
+				bombPoint.transform.Rotate(0f, 180f, 0f);
+				bombPoint.position = new Vector2(-bombPointPosition, transform.position.y);
 			}
 			else if (playerRb.velocity.x > 0.1f)
 			{
 				playerSr.flipX = false;
+				bombPoint.position = new Vector2(bombPointPosition, transform.position.y);
 			}
 		}
 		
