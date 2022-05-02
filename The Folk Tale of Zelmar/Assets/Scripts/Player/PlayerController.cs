@@ -50,11 +50,25 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Transform bombPoint;
 	float bombPointPosition;
 
+	////////// INVENTORY //////////
+
+	public bool useBomb;
+	public bool useBow;
+	public bool useFire;
+	public bool useIce;
+	public bool useBottle;
+
+	////////// OTHER SCRIPTS //////////
+
+	Inventory_Controller inventory_Controller_Script;
+	[SerializeField] GameObject inventory;
+
 	private void Awake()
     {
 		playerRb = GetComponent<Rigidbody2D>();
 		playerSr = GetComponent<SpriteRenderer>();
 		playerAnim = GetComponent<Animator>();
+		inventory_Controller_Script = inventory.GetComponent<Inventory_Controller>();
 		bombPointPosition = bombPoint.position.x;
 	}
 
@@ -67,63 +81,73 @@ public class PlayerController : MonoBehaviour
 
     void Update()
 	{
-		//inWater = Physics2D.OverlapCircle(waterPoint.position, .2f, whatIsWater);
-
-		if(inWater)
-        {
-			onLand = false;
-        }
-
-		if (onLand)
+		if (inventory_Controller_Script.inventoryOn == false)
 		{
-			isGrounded = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
+			//inWater = Physics2D.OverlapCircle(waterPoint.position, .2f, whatIsWater);
 
-			
-
-			if (playerRb.velocity.y > 0.1)
+			if (inWater)
 			{
-				isGrounded = false;
+				onLand = false;
 			}
 
-			if (Input.GetButtonDown("Jump") && isGrounded)
+			if (onLand)
 			{
-				ChangeAnimationState(JUMP);
+				isGrounded = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
 
-				playerJumped = true;
-				playerJumping = true;
-				jumpTimer = Time.time;
+
+
+				if (playerRb.velocity.y > 0.1)
+				{
+					isGrounded = false;
+				}
+
+				if (Input.GetButtonDown("Jump") && isGrounded)
+				{
+					ChangeAnimationState(JUMP);
+
+					playerJumped = true;
+					playerJumping = true;
+					jumpTimer = Time.time;
+				}
+
+				if (Input.GetButtonUp("Jump") || Time.time - jumpTimer > maxExtraJumpTime)
+				{
+					playerJumping = false;
+				}
+
+				if (Input.GetButtonDown("Horizontal"))
+				{
+					sprintTimer = Time.time;
+					jumpedDuringSprint = false;
+				}
+
+
+				Vector3 characterScale = transform.localScale;
+
+				if (playerRb.velocity.x < -0.1f)
+				{
+					characterScale.x = -1;
+					//playerSr.flipX = true;
+
+				}
+				else if (playerRb.velocity.x > 0.1f)
+				{
+
+					characterScale.x = 1;
+					//playerSr.flipX = false;
+
+				}
+				transform.localScale = characterScale;
 			}
-
-			if (Input.GetButtonUp("Jump") || Time.time - jumpTimer > maxExtraJumpTime)
-			{
-				playerJumping = false;
-			}
-
-			if (Input.GetButtonDown("Horizontal"))
-			{
-				sprintTimer = Time.time;
-				jumpedDuringSprint = false;
-			}
-
-
-			Vector3 characterScale = transform.localScale;
-
-			if (playerRb.velocity.x < -0.1f)
-			{
-				characterScale.x = -1;
-				//playerSr.flipX = true;
-				
-			}
-			else if (playerRb.velocity.x > 0.1f)
-			{
-
-				characterScale.x = 1;
-				//playerSr.flipX = false;
-				
-			}
-			transform.localScale = characterScale;
 		}
-		
+
+		if (isGrounded)
+		{
+			if (Input.GetButtonDown("Inventory"))
+			{
+				inventory_Controller_Script.Inventory_On_Off();
+			}
+		}
 	}
 
 	void FixedUpdate()
