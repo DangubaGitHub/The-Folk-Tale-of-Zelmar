@@ -6,7 +6,7 @@ public class Big_Chest : MonoBehaviour
 {
     bool atChest;
     bool isOpen;
-    bool isClosed;
+    //bool isClosed;
     public bool hasBigKey;
 
     string currentState;
@@ -34,7 +34,7 @@ public class Big_Chest : MonoBehaviour
                 if(!isOpen && hasBigKey)
                 {
                     isOpen = true;
-                    isClosed = false;
+                    //isClosed = false;
                     ChangeAnimationState(OPEN);
                     Debug.Log("Chest is Open");
                 }

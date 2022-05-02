@@ -105,18 +105,23 @@ public class PlayerController : MonoBehaviour
 				jumpedDuringSprint = false;
 			}
 
+
+			Vector3 characterScale = transform.localScale;
+
 			if (playerRb.velocity.x < -0.1f)
 			{
-				//transform.Rotate(0f, 180f, 0f);
-				playerSr.flipX = true;
-				bombPoint.transform.Rotate(0f, 180f, 0f);
-				bombPoint.position = new Vector2(-bombPointPosition, transform.position.y);
+				characterScale.x = -1;
+				//playerSr.flipX = true;
+				
 			}
 			else if (playerRb.velocity.x > 0.1f)
 			{
-				playerSr.flipX = false;
-				bombPoint.position = new Vector2(bombPointPosition, transform.position.y);
+
+				characterScale.x = 1;
+				//playerSr.flipX = false;
+				
 			}
+			transform.localScale = characterScale;
 		}
 		
 	}
