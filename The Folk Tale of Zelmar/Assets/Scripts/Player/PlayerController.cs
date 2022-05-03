@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 	bool atMaxSpeed;
 
 	[SerializeField] Transform bombPoint;
-	float bombPointPosition;
+	//float bombPointPosition;
 
 	////////// INVENTORY //////////
 
@@ -57,6 +57,13 @@ public class PlayerController : MonoBehaviour
 	public bool useFire;
 	public bool useIce;
 	public bool useBottle;
+
+	////////// PREFABS //////////
+	[Header("Prefabs")]
+	[SerializeField] GameObject bombPrefab;
+	[SerializeField] GameObject arrowPrefab;
+	[SerializeField] GameObject firePrefab;
+	[SerializeField] GameObject icePrefab;
 
 	////////// OTHER SCRIPTS //////////
 
@@ -69,7 +76,7 @@ public class PlayerController : MonoBehaviour
 		playerSr = GetComponent<SpriteRenderer>();
 		playerAnim = GetComponent<Animator>();
 		inventory_Controller_Script = inventory.GetComponent<Inventory_Controller>();
-		bombPointPosition = bombPoint.position.x;
+		//bombPointPosition = bombPoint.position.x;
 	}
 
     private void Start()
@@ -121,24 +128,32 @@ public class PlayerController : MonoBehaviour
 					jumpedDuringSprint = false;
 				}
 
-
+				
 				Vector3 characterScale = transform.localScale;
 
 				if (playerRb.velocity.x < -0.1f)
 				{
 					characterScale.x = -1;
 					//playerSr.flipX = true;
-
+					bombPoint.transform.eulerAngles = new Vector3(0, 180, 0);
 				}
 				else if (playerRb.velocity.x > 0.1f)
 				{
-
+					
 					characterScale.x = 1;
 					//playerSr.flipX = false;
-
+					bombPoint.transform.eulerAngles = new Vector3(0, 0, 0);
 				}
 				transform.localScale = characterScale;
 			}
+
+			if(Input.GetButtonDown("Use Item"))
+            {
+				if(useBomb)
+                {
+					Instantiate(bombPrefab, bombPoint.position, Quaternion.identity);
+                }
+            }
 		}
 
 		if (isGrounded)
