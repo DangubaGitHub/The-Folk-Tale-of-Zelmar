@@ -34,7 +34,7 @@ public class Big_Chest : MonoBehaviour
                 if(!isOpen && hasBigKey)
                 {
                     isOpen = true;
-                    //isClosed = false;
+                    //isClosed = false; 
                     ChangeAnimationState(OPEN);
                     Debug.Log("Chest is Open");
                 }

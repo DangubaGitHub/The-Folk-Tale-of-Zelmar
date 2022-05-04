@@ -7,6 +7,7 @@ TagManager:
   - Water
   - Bomb
   - Wall_Crack
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - UI
   - Ground
   - Enemy
-  - 
-  - 
-  - 
+  - Fire Ball
+  - Ice Spike
+  - Arrow
   - 
   - 
   - 

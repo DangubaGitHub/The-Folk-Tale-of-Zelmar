@@ -29,12 +29,16 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] bool isGrounded;
 	[SerializeField] bool inWater;
 	[SerializeField] bool onLand;
-	
+
+	bool atMaxSpeed;
+	bool isAttacking;
 
 	[SerializeField] Transform groundPoint;
 	[SerializeField] Transform waterPoint;
 	[SerializeField] LayerMask whatIsWater;
 	[SerializeField] LayerMask whatIsGround;
+
+	////////////////////////////// ANIMATION //////////
 
 	const string IDLE = "Player_Idle";
 	const string WALK = "Player_Walk";
@@ -42,30 +46,37 @@ public class PlayerController : MonoBehaviour
 	const string JUMP = "Player_Jump";
 	const string FALL = "Player_Fall";
 	const string HEADBUTT = "Player_Headbutt";
+	const string MAGIC = "Player_Magic";
+	const string BOW = "Player_Bow";
 
 	string currentState;
 
-	bool atMaxSpeed;
+	////////////////////////////// FIRE POINTS //////////
 
+	[Header("Fire Points")]
 	[SerializeField] Transform bombPoint;
+	[SerializeField] Transform magicPoint;
+	[SerializeField] Transform arrowPoint;
 	//float bombPointPosition;
 
-	////////// INVENTORY //////////
+	////////////////////////////// INVENTORY //////////    
 
+	[Header("Inventory Items")]
 	public bool useBomb;
 	public bool useBow;
 	public bool useFire;
 	public bool useIce;
 	public bool useBottle;
 
-	////////// PREFABS //////////
+	////////////////////////////// PREFABS //////////
+
 	[Header("Prefabs")]
 	[SerializeField] GameObject bombPrefab;
 	[SerializeField] GameObject arrowPrefab;
 	[SerializeField] GameObject firePrefab;
 	[SerializeField] GameObject icePrefab;
 
-	////////// OTHER SCRIPTS //////////
+	////////////////////////////// OTHER SCRIPTS //////////
 
 	Inventory_Controller inventory_Controller_Script;
 	[SerializeField] GameObject inventory;
@@ -133,27 +144,61 @@ public class PlayerController : MonoBehaviour
 
 				if (playerRb.velocity.x < -0.1f)
 				{
+					
+
 					characterScale.x = -1;
+					//playerSr.transform.eulerAngles = new Vector3(0, 180, 0);
 					//playerSr.flipX = true;
 					bombPoint.transform.eulerAngles = new Vector3(0, 180, 0);
+					arrowPoint.transform.eulerAngles = new Vector3(0, 180, 0);
+					magicPoint.transform.eulerAngles = new Vector3(0, 180, 0);
 				}
 				else if (playerRb.velocity.x > 0.1f)
 				{
 					
+
 					characterScale.x = 1;
+					//playerSr.transform.eulerAngles = new Vector3(0, 0, 0);
 					//playerSr.flipX = false;
 					bombPoint.transform.eulerAngles = new Vector3(0, 0, 0);
+					arrowPoint.transform.eulerAngles = new Vector3(0, 0, 0);
+					magicPoint.transform.eulerAngles = new Vector3(0, 0, 0);
 				}
 				transform.localScale = characterScale;
 			}
 
-			if(Input.GetButtonDown("Use Item"))
-            {
-				if(useBomb)
-                {
-					Instantiate(bombPrefab, bombPoint.position, Quaternion.identity);
-                }
-            }
+			if (Input.GetButtonDown("Use Item"))
+			{
+				//isAttacking = true;
+
+				if (useBomb)
+				{
+					Instantiate(bombPrefab, bombPoint.position, bombPoint.rotation);
+				}
+
+				if (useFire)
+				{
+					ChangeAnimationState(MAGIC);
+					Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
+
+
+				}
+
+				if (useIce)
+				{
+					ChangeAnimationState(MAGIC);
+					Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
+				}
+
+				if (useBow)
+				{
+					ChangeAnimationState(BOW);
+					Instantiate(arrowPrefab, arrowPoint.position, arrowPoint.rotation);
+
+
+				}
+			}
+			//isAttacking = false;
 		}
 
 		if (isGrounded)
@@ -229,7 +274,9 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
-		if(inWater)
+		
+
+		if (inWater)
         {
 			playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * underwaterMoveSpeed * Time.deltaTime, playerRb.velocity.y);
 
@@ -241,16 +288,6 @@ public class PlayerController : MonoBehaviour
 
 		}
 	}
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if(1 << other.gameObject.layer == whatIsWater)
-        {
-			inWater = true;
-        }
-    }
-
-    
 
     void ChangeAnimationState(string newState)
     {
