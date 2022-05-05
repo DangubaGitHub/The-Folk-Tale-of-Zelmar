@@ -265,7 +265,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -1766470999363989554}
-    m_Position: {x: 130, y: 100, z: 0}
+    m_Position: {x: 130, y: 50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4289359941893216643}
     m_Position: {x: 130, y: 250, z: 0}
@@ -280,13 +280,13 @@ AnimatorStateMachine:
     m_Position: {x: 130, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1653647219559399256}
-    m_Position: {x: 165, y: 265, z: 0}
+    m_Position: {x: -100, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8039253062026141592}
-    m_Position: {x: 200, y: 330, z: 0}
+    m_Position: {x: 350, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3185115411911120186}
-    m_Position: {x: 235, y: 395, z: 0}
+    m_Position: {x: 130, y: 370, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

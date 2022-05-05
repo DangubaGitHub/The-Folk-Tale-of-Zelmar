@@ -169,33 +169,37 @@ public class PlayerController : MonoBehaviour
 
 			if (Input.GetButtonDown("Use Item"))
 			{
-				//isAttacking = true;
-
-				if (useBomb)
+				if (!isAttacking)
 				{
-					Instantiate(bombPrefab, bombPoint.position, bombPoint.rotation);
-				}
+					isAttacking = true;
 
-				if (useFire)
-				{
-					ChangeAnimationState(MAGIC);
-					Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
+					if (useBomb)
+					{
+						Instantiate(bombPrefab, bombPoint.position, bombPoint.rotation);
+					}
 
-
-				}
-
-				if (useIce)
-				{
-					ChangeAnimationState(MAGIC);
-					Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
-				}
-
-				if (useBow)
-				{
-					ChangeAnimationState(BOW);
-					Instantiate(arrowPrefab, arrowPoint.position, arrowPoint.rotation);
+					if (useFire)
+					{
+						ChangeAnimationState(MAGIC);
+						Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
 
 
+					}
+
+					if (useIce)
+					{
+						ChangeAnimationState(MAGIC);
+						Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
+					}
+
+					if (useBow)
+					{
+						ChangeAnimationState(BOW);
+						Instantiate(arrowPrefab, arrowPoint.position, arrowPoint.rotation);
+
+
+					}
+					Invoke("AttackComplete", 0.4f);
 				}
 			}
 			//isAttacking = false;
@@ -252,7 +256,7 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 
-			if (isGrounded)
+			if (isGrounded && !isAttacking)
 			{
 				if (playerRb.velocity.x != 0 && !atMaxSpeed)
 				{
@@ -296,5 +300,10 @@ public class PlayerController : MonoBehaviour
 		playerAnim.Play(newState);
 
 		currentState = newState;
+    }
+
+	void AttackComplete()
+    {
+		isAttacking = false;
     }
 }
