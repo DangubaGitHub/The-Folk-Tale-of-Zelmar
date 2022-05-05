@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
 	bool atMaxSpeed;
 	bool isAttacking;
+	bool isAirAttacking;
 
 	[SerializeField] Transform groundPoint;
 	[SerializeField] Transform waterPoint;
@@ -47,7 +48,11 @@ public class PlayerController : MonoBehaviour
 	const string FALL = "Player_Fall";
 	const string HEADBUTT = "Player_Headbutt";
 	const string MAGIC = "Player_Magic";
+	const string MAGIC_JUMP = "Player_Magic_Jump";
+	const string MAGIC_FALL = "Player_Magic_Fall";
 	const string BOW = "Player_Bow";
+	const string BOW_JUMP = "Player_Bow_Jump";
+	const string BOW_FALL = "Player_Bow_Fall";
 
 	string currentState;
 
@@ -97,7 +102,7 @@ public class PlayerController : MonoBehaviour
 		onLand = true;
 	}
 
-    void Update()
+    void Update() ////////////////////////////////////////////////////////////////////////////////////////// UPDATE //////////////////////////////
 	{
 		if (inventory_Controller_Script.inventoryOn == false)
 		{
@@ -119,7 +124,7 @@ public class PlayerController : MonoBehaviour
 					isGrounded = false;
 				}
 
-				if (Input.GetButtonDown("Jump") && isGrounded)
+				if (Input.GetButtonDown("Jump") && isGrounded && !isAirAttacking)
 				{
 					ChangeAnimationState(JUMP);
 
@@ -167,9 +172,9 @@ public class PlayerController : MonoBehaviour
 				transform.localScale = characterScale;
 			}
 
-			if (Input.GetButtonDown("Use Item"))
+			if (Input.GetButtonDown("Use Item")) //////////////////////////////////////////////////////////// GROUND ATTACK //////////////////////////////
 			{
-				if (!isAttacking)
+				if (!isAttacking && isGrounded)
 				{
 					isAttacking = true;
 
@@ -182,8 +187,6 @@ public class PlayerController : MonoBehaviour
 					{
 						ChangeAnimationState(MAGIC);
 						Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
-
-
 					}
 
 					if (useIce)
@@ -196,9 +199,62 @@ public class PlayerController : MonoBehaviour
 					{
 						ChangeAnimationState(BOW);
 						Instantiate(arrowPrefab, arrowPoint.position, arrowPoint.rotation);
-
-
 					}
+
+					Invoke("AttackComplete", 0.4f);
+				}
+
+				else if(!isAirAttacking && !isGrounded) //////////////////////////////////////////////////////////// AIR ATTACK //////////////////////////////
+				{
+					isAirAttacking = true;
+
+					if (useBomb)
+					{
+						Instantiate(bombPrefab, bombPoint.position, bombPoint.rotation);
+					}
+
+					if (useFire)
+					{
+						if (playerRb.velocity.y < 0)
+						{
+							ChangeAnimationState(MAGIC_FALL);
+							Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
+						}
+						else if(playerRb.velocity.y > 0)
+                        {
+							ChangeAnimationState(MAGIC_JUMP);
+							Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
+						}
+					}
+
+					if (useIce)
+					{
+						if (playerRb.velocity.y < 0)
+						{
+							ChangeAnimationState(MAGIC_FALL);
+							Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
+						}
+						else if (playerRb.velocity.y > 0)
+						{
+							ChangeAnimationState(MAGIC_JUMP);
+							Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
+						}
+				    }
+
+					if (useBow)
+					{
+						if (playerRb.velocity.y < 0)
+						{
+							ChangeAnimationState(BOW_FALL);
+							Instantiate(arrowPrefab, arrowPoint.position, arrowPoint.rotation);
+						}
+						else if (playerRb.velocity.y > 0)
+						{
+							ChangeAnimationState(BOW_JUMP);
+							Instantiate(arrowPrefab, arrowPoint.position, arrowPoint.rotation);
+						}
+					}
+
 					Invoke("AttackComplete", 0.4f);
 				}
 			}
@@ -214,7 +270,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void FixedUpdate()
+	void FixedUpdate() ////////////////////////////////////////////////////////////////////////////////////////// FIXED UPDATE //////////////////////////////
 	{
 		if (onLand)
 		{
@@ -239,7 +295,7 @@ public class PlayerController : MonoBehaviour
 			{
 				playerRb.AddForce(new Vector2(0, initialJumpForce));
 
-				if (!isGrounded)
+				if (!isGrounded && !isAirAttacking)
 				{
 					ChangeAnimationState(JUMP);
 				}
@@ -250,7 +306,7 @@ public class PlayerController : MonoBehaviour
 			{
 				playerRb.AddForce(new Vector2(0, extraJumpForce));
 
-				if (!isGrounded)
+				if (!isGrounded && !isAirAttacking)
 				{
 					ChangeAnimationState(JUMP);
 				}
@@ -272,24 +328,10 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 
-			if (playerRb.velocity.y < 0 && !isGrounded)
+			if (playerRb.velocity.y < 0 && !isGrounded && !isAirAttacking)
 			{
 				ChangeAnimationState(FALL);
 			}
-		}
-
-		
-
-		if (inWater)
-        {
-			playerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * underwaterMoveSpeed * Time.deltaTime, playerRb.velocity.y);
-
-			if (Input.GetButtonDown("Jump"))
-            {
-				playerRb.AddForce(new Vector2(0, swimSpeed));
-			}
-
-
 		}
 	}
 
@@ -305,5 +347,6 @@ public class PlayerController : MonoBehaviour
 	void AttackComplete()
     {
 		isAttacking = false;
+		isAirAttacking = false;
     }
 }
