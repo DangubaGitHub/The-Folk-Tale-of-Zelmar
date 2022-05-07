@@ -51,9 +51,9 @@ public class Small_Chest_Arrows : MonoBehaviour
          
         ChangeAnimationState(OPEN);
         isOpen = true;
-        GameObject arrow = Instantiate(arrows, spawnPoint.position, Quaternion.identity);
+        GameObject item = Instantiate(arrows, spawnPoint.position, Quaternion.identity);
         pick_Ups_Script.arrows += 5;
-        Destroy(arrow, 1f);
+        Destroy(item, 1f);
            
     }
 

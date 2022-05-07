@@ -45,8 +45,8 @@ public class Big_Key_Chest : MonoBehaviour
                     chestOpen = true;
                     GameObject key = Instantiate(bigKeyPrefab, keySpawnPoint.position, Quaternion.identity);
                     Destroy(key, 1f);
-                    big_Chest_Bow_Script.hasBigKey = true;
-                    big_Chest_Fire_Script.hasBigKey = true;
+                   // big_Chest_Bow_Script.hasBigKey = true;
+                   // big_Chest_Fire_Script.hasBigKey = true;
                 }
             }
         }

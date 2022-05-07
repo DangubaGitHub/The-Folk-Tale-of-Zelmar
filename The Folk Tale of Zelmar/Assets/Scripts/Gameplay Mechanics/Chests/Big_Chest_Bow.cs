@@ -4,58 +4,68 @@ using UnityEngine;
 
 public class Big_Chest_Bow : MonoBehaviour
 {
-    bool atChest;
     bool isOpen;
-    //bool isClosed;
-    public bool hasBigKey;
+    public bool atChest;
+    
 
-    [SerializeField] GameObject bowChest;
     [SerializeField] Transform spawnPoint;
+    [SerializeField] GameObject bow;
 
-    string currentState;
     Animator chestAnim;
+    string currentState;
 
-    const string Close = "Big_Chest_Closed";
     const string OPEN = "Big_Chest_Open";
+
+    Pick_Ups pick_Ups_Script;
+    [SerializeField] GameObject player;
+
+    Inventory_Controller inventory_Controller_Script;
+    [SerializeField] GameObject uiCanvas;
 
     private void Awake()
     {
         chestAnim = GetComponent<Animator>();
+        pick_Ups_Script = player.GetComponent<Pick_Ups>();
+        inventory_Controller_Script = uiCanvas.GetComponent<Inventory_Controller>();
     }
 
     void Start()
     {
-        
+
     }
+
 
     void Update()
     {
-        if(atChest)
+        if (atChest)
         {
-            if(Input.GetButtonDown("Use"))
+            if (Input.GetButtonDown("Use"))
             {
-                if(!isOpen && hasBigKey)
+                if (!isOpen && pick_Ups_Script.hasBigKey)
                 {
-                    isOpen = true;
-                    //isClosed = false; 
-                    ChangeAnimationState(OPEN);
-                    GameObject bow = Instantiate(bowChest, spawnPoint.position, Quaternion.identity);
-                    Destroy(bow, 1f);
-                    Debug.Log("Chest is Open");
-                    hasBigKey = false;
+                    Open_Chest();
                 }
-
-                else if(!isOpen && !hasBigKey)
-                {
-                    Debug.Log("Chest is Locked");
-                }
+                else
+                    Debug.Log("Locked: You need a Big Key");
             }
         }
     }
 
+    public void Open_Chest()
+    {
+
+        ChangeAnimationState(OPEN);
+        isOpen = true;
+        GameObject item = Instantiate(bow, spawnPoint.position, Quaternion.identity);
+        inventory_Controller_Script.hasBow = true;
+        pick_Ups_Script.hasBigKey = false;
+        Destroy(item, 1f);
+
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             atChest = true;
         }
@@ -63,7 +73,7 @@ public class Big_Chest_Bow : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             atChest = false;
         }

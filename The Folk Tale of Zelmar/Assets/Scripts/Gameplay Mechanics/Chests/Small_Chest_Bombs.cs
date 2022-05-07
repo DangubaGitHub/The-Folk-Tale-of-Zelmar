@@ -50,9 +50,9 @@ public class Small_Chest_Bombs : MonoBehaviour
   
         ChangeAnimationState(OPEN);
         isOpen = true;
-        GameObject bomb = Instantiate(bombs, spawnPoint.position, Quaternion.identity);
+        GameObject item = Instantiate(bombs, spawnPoint.position, Quaternion.identity);
         pick_Ups_Script.bombs += 3;
-        Destroy(bomb, 1f);
+        Destroy(item, 1f);
 
     }
 

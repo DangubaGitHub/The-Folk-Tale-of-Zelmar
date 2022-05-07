@@ -27,7 +27,6 @@ public class Cracked_Wall : MonoBehaviour
         if(bomb_At_Wall)
         {
             StartCoroutine(DelayWallCrack(1.8f));
-            
         }
     }
 

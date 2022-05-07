@@ -87,24 +87,18 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] GameObject inventory;
 	[SerializeField] GameObject smallChestBombs;
 	[SerializeField] GameObject smallChestArrows;
+	[SerializeField] GameObject player;
 
-	
 	Inventory_Controller inventory_Controller_Script;
-    Small_Chest_Bombs small_Chest_Bombs;
-	Small_Chest_Arrows small_Chest_Arrows;
-    Player_Collisions player_Collisions;
+	Pick_Ups pick_Ups_Script;
 
 	private void Awake()
     {
-		player_Collisions = gameObject.GetComponent<Player_Collisions>();
-
 		playerRb = GetComponent<Rigidbody2D>();
 		playerSr = GetComponent<SpriteRenderer>();
 		playerAnim = GetComponent<Animator>();
 		inventory_Controller_Script = inventory.GetComponent<Inventory_Controller>();
-		small_Chest_Bombs = smallChestBombs.GetComponent<Small_Chest_Bombs>();
-		small_Chest_Arrows = smallChestBombs.GetComponent<Small_Chest_Arrows>();
-		//bombPointPosition = bombPoint.position.x;
+		pick_Ups_Script = player.GetComponent<Pick_Ups>();
 	}
 
     private void Start()
@@ -190,10 +184,16 @@ public class PlayerController : MonoBehaviour
 				{
 					isAttacking = true;
 
-					if (useBomb)
+					if (useBomb && pick_Ups_Script.bombs > 0)
 					{
 						Instantiate(bombPrefab, bombPoint.position, bombPoint.rotation);
+						pick_Ups_Script.bombs--;
 					}
+					else if (useBomb && pick_Ups_Script.bombs <= 0)
+					{
+						Debug.Log("No Bombs");
+						//Play Sound
+                    }
 
 					if (useFire)
 					{
@@ -207,11 +207,18 @@ public class PlayerController : MonoBehaviour
 						Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
 					}
 
-					if (useBow)
+					if (useBow && pick_Ups_Script.arrows > 0)
 					{
 						ChangeAnimationState(BOW);
 						Instantiate(arrowPrefab, arrowPoint.position, arrowPoint.rotation);
+						pick_Ups_Script.arrows--;
 					}
+					else if(useBow && pick_Ups_Script.arrows <= 0)
+                    {
+						ChangeAnimationState(BOW);
+						Debug.Log("No Arrows");
+						//Play Sound
+                    }
 
 					Invoke("AttackComplete", 0.4f);
 				}
@@ -220,9 +227,15 @@ public class PlayerController : MonoBehaviour
 				{
 					isAirAttacking = true;
 
-					if (useBomb)
+					if (useBomb && pick_Ups_Script.bombs > 0)
 					{
 						Instantiate(bombPrefab, bombPoint.position, bombPoint.rotation);
+						pick_Ups_Script.bombs--;
+					}
+					else if (useBomb && pick_Ups_Script.bombs <= 0)
+					{
+						Debug.Log("No Bombs");
+						//Play Sound
 					}
 
 					if (useFire)
@@ -253,21 +266,34 @@ public class PlayerController : MonoBehaviour
 						}
 				    }
 
-					if (useBow)
+					if (useBow && pick_Ups_Script.arrows > 0)
 					{
 						if (playerRb.velocity.y < 0)
 						{
 							ChangeAnimationState(BOW_FALL);
 							Instantiate(arrowPrefab, arrowPoint.position, arrowPoint.rotation);
+							pick_Ups_Script.arrows--;
 						}
 						else if (playerRb.velocity.y > 0)
 						{
 							ChangeAnimationState(BOW_JUMP);
 							Instantiate(arrowPrefab, arrowPoint.position, arrowPoint.rotation);
+							pick_Ups_Script.arrows--;
+						}
+					}
+					else if (useBow && pick_Ups_Script.arrows <= 0)
+					{
+						if (playerRb.velocity.y < 0)
+						{
+							ChangeAnimationState(BOW_FALL);
+						}
+						else if (playerRb.velocity.y > 0)
+						{
+							ChangeAnimationState(BOW_JUMP);
 						}
 					}
 
-					Invoke("AttackComplete", 0.4f);
+						Invoke("AttackComplete", 0.4f);
 				}
 			}
 			//isAttacking = false;

@@ -12,6 +12,14 @@ public class Pick_Ups : MonoBehaviour
 
     public bool hasBigKey;
 
+    Inventory_Controller inventory_Controller_Script;
+    [SerializeField] GameObject uiCanvas;
+
+    private void Awake()
+    {
+        inventory_Controller_Script = uiCanvas.GetComponent<Inventory_Controller>();
+    }
+
     void Start()
     {
         
@@ -19,7 +27,14 @@ public class Pick_Ups : MonoBehaviour
 
     void Update()
     {
-        
+        if(bombs > 0)
+        {
+            inventory_Controller_Script.hasBomb = true;
+        }
+        else if(bombs <= 0)
+        {
+            inventory_Controller_Script.hasBomb = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
