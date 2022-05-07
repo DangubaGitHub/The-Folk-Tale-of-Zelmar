@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3755345082428316183}
   - component: {fileID: 3755345082428316182}
   - component: {fileID: 3755345082428316185}
+  - component: {fileID: 95923068898221055}
   m_Layer: 0
   m_Name: Bronze_Coin_Animation_0
-  m_TagString: Untagged
+  m_TagString: Bronze Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,3 +106,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &95923068898221055
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3755345082428316184}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.037371635, y: 0}
+  m_Size: {x: 0.45449567, y: 0.5926603}
+  m_Direction: 0

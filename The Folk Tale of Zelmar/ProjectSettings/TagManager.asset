@@ -8,6 +8,12 @@ TagManager:
   - Bomb
   - Wall_Crack
   - Ground
+  - Small Chest
+  - Big Chest
+  - Door
+  - Gold Coin
+  - Silver Coin
+  - Bronze Coin
   layers:
   - Default
   - TransparentFX

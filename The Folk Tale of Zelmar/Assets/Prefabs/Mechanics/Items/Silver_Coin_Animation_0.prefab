@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7353191968933034562}
   - component: {fileID: 7353191968933034563}
   - component: {fileID: 7353191968933034560}
+  - component: {fileID: 981105520460095808}
   m_Layer: 0
   m_Name: Silver_Coin_Animation_0
-  m_TagString: Untagged
+  m_TagString: Silver Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,3 +106,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &981105520460095808
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353191968933034561}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03052929, y: 0}
+  m_Size: {x: 0.4824453, y: 0.62454885}
+  m_Direction: 0

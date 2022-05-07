@@ -83,15 +83,27 @@ public class PlayerController : MonoBehaviour
 
 	////////////////////////////// OTHER SCRIPTS //////////
 
-	Inventory_Controller inventory_Controller_Script;
+	[Header("Scripts")]
 	[SerializeField] GameObject inventory;
+	[SerializeField] GameObject smallChestBombs;
+	[SerializeField] GameObject smallChestArrows;
+
+	
+	Inventory_Controller inventory_Controller_Script;
+    Small_Chest_Bombs small_Chest_Bombs;
+	Small_Chest_Arrows small_Chest_Arrows;
+    Player_Collisions player_Collisions;
 
 	private void Awake()
     {
+		player_Collisions = gameObject.GetComponent<Player_Collisions>();
+
 		playerRb = GetComponent<Rigidbody2D>();
 		playerSr = GetComponent<SpriteRenderer>();
 		playerAnim = GetComponent<Animator>();
 		inventory_Controller_Script = inventory.GetComponent<Inventory_Controller>();
+		small_Chest_Bombs = smallChestBombs.GetComponent<Small_Chest_Bombs>();
+		small_Chest_Arrows = smallChestBombs.GetComponent<Small_Chest_Arrows>();
 		//bombPointPosition = bombPoint.position.x;
 	}
 
@@ -332,6 +344,10 @@ public class PlayerController : MonoBehaviour
 			{
 				ChangeAnimationState(FALL);
 			}
+
+			////////////////////////////////////////////////////////////////////////////////////////// USE BUTTON //////////////////////////////
+
+			
 		}
 	}
 

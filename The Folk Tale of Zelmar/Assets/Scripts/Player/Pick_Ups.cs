@@ -5,6 +5,13 @@ using UnityEngine;
 public class Pick_Ups : MonoBehaviour
 {
 
+    public int smallKey;
+    public int bombs;
+    public int arrows;
+    public int coinCount;
+
+    public bool bigKey;
+
     void Start()
     {
         
@@ -17,9 +24,22 @@ public class Pick_Ups : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Bronze Coin"))
         {
-            Destroy(gameObject);
+            coinCount++;
+            Destroy(other.gameObject);
+        }
+
+        if(other.CompareTag("Silver Coin"))
+        {
+            coinCount = coinCount + 5;
+            Destroy(other.gameObject);
+        }
+
+        if(other.CompareTag("Gold Coin"))
+        {
+            coinCount = coinCount + 10;
+            Destroy(other.gameObject);
         }
     }
 }
