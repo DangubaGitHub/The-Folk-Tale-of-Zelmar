@@ -10,7 +10,7 @@ public class Pick_Ups : MonoBehaviour
     public int arrows;
     public int coinCount;
 
-    public bool bigKey;
+    public bool hasBigKey;
 
     void Start()
     {

@@ -16,9 +16,13 @@ public class Small_Chest_Bombs : MonoBehaviour
 
     const string OPEN = "Chest_Open";
 
+    Pick_Ups pick_Ups_Script;
+    [SerializeField] GameObject player;
+
     private void Awake()
     {
         chestAnim = GetComponent<Animator>();
+        pick_Ups_Script = player.GetComponent<Pick_Ups>();
     }
 
     void Start()
@@ -44,10 +48,11 @@ public class Small_Chest_Bombs : MonoBehaviour
     public void Open_Chest()
     {
   
-            ChangeAnimationState(OPEN);
-            isOpen = true;
-            GameObject bomb = Instantiate(bombs, spawnPoint.position, Quaternion.identity);
-            Destroy(bomb, 1f);
+        ChangeAnimationState(OPEN);
+        isOpen = true;
+        GameObject bomb = Instantiate(bombs, spawnPoint.position, Quaternion.identity);
+        pick_Ups_Script.bombs += 3;
+        Destroy(bomb, 1f);
 
     }
 
