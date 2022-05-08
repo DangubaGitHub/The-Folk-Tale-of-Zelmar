@@ -71,7 +71,8 @@ public class PlayerController : MonoBehaviour
 	public bool useBow;
 	public bool useFire;
 	public bool useIce;
-	public bool useBottle;
+	public bool useBottleRed;
+	public bool useBottleGreen;
 
 	////////////////////////////// PREFABS //////////
 
