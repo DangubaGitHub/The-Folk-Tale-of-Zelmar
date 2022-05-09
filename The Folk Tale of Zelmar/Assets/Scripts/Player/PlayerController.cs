@@ -85,13 +85,15 @@ public class PlayerController : MonoBehaviour
 	////////////////////////////// OTHER SCRIPTS //////////
 
 	[Header("Scripts")]
-	[SerializeField] GameObject inventory;
-	[SerializeField] GameObject smallChestBombs;
-	[SerializeField] GameObject smallChestArrows;
-	[SerializeField] GameObject player;
-
 	Inventory_Controller inventory_Controller_Script;
+	[SerializeField] GameObject inventory;
 	Pick_Ups pick_Ups_Script;
+	[SerializeField] GameObject player;
+	//[SerializeField] GameObject smallChestBombs;
+	//[SerializeField] GameObject smallChestArrows;
+	PlayerMagicController magic_Controller_Script;
+	[SerializeField] GameObject playerMagic;
+
 
 	private void Awake()
     {
@@ -100,6 +102,7 @@ public class PlayerController : MonoBehaviour
 		playerAnim = GetComponent<Animator>();
 		inventory_Controller_Script = inventory.GetComponent<Inventory_Controller>();
 		pick_Ups_Script = player.GetComponent<Pick_Ups>();
+		magic_Controller_Script = playerMagic.GetComponent<PlayerMagicController>();
 	}
 
     private void Start()
@@ -196,17 +199,34 @@ public class PlayerController : MonoBehaviour
 						//Play Sound
                     }
 
-					if (useFire)
+					if (useFire && magic_Controller_Script.currentMagic > 0)
 					{
 						ChangeAnimationState(MAGIC);
 						Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
+
+						magic_Controller_Script.Use_Magic(5);
+					}
+					else if(useFire && magic_Controller_Script.currentMagic <= 0)
+                    {
+						ChangeAnimationState(MAGIC);
+						Debug.Log("No Magic");
+						//Play Sound
 					}
 
-					if (useIce)
+					if (useIce && magic_Controller_Script.currentMagic > 0)
 					{
 						ChangeAnimationState(MAGIC);
 						Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
+
+						magic_Controller_Script.Use_Magic(10);
 					}
+					else if(useIce && magic_Controller_Script.currentMagic <= 0)
+                    {
+						ChangeAnimationState(MAGIC);
+						Debug.Log("No Magic");
+						//Play Sound
+					}
+
 
 					if (useBow && pick_Ups_Script.arrows > 0)
 					{
@@ -243,13 +263,35 @@ public class PlayerController : MonoBehaviour
 					{
 						if (playerRb.velocity.y < 0)
 						{
-							ChangeAnimationState(MAGIC_FALL);
-							Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
+							if (magic_Controller_Script.currentMagic > 0)
+							{
+								ChangeAnimationState(MAGIC_FALL);
+								Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
+
+								magic_Controller_Script.Use_Magic(5);
+							}
+							else if(magic_Controller_Script.currentMagic <= 0)
+                            {
+								ChangeAnimationState(MAGIC_FALL);
+								Debug.Log("No Magic");
+								//Play Sound
+							}
 						}
 						else if(playerRb.velocity.y > 0)
                         {
-							ChangeAnimationState(MAGIC_JUMP);
-							Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
+							if (magic_Controller_Script.currentMagic > 0)
+							{
+								ChangeAnimationState(MAGIC_JUMP);
+								Instantiate(firePrefab, magicPoint.position, magicPoint.rotation);
+
+								magic_Controller_Script.Use_Magic(5);
+							}
+							else if(magic_Controller_Script.currentMagic <= 0)
+                            {
+								ChangeAnimationState(MAGIC_JUMP);
+								Debug.Log("No Magic");
+								//Play Sound
+							}
 						}
 					}
 
@@ -257,13 +299,35 @@ public class PlayerController : MonoBehaviour
 					{
 						if (playerRb.velocity.y < 0)
 						{
-							ChangeAnimationState(MAGIC_FALL);
-							Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
+							if (magic_Controller_Script.currentMagic > 0)
+							{
+								ChangeAnimationState(MAGIC_FALL);
+								Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
+
+								magic_Controller_Script.Use_Magic(10);
+							}
+							else  if(magic_Controller_Script.currentMagic <= 0)
+                            {
+								ChangeAnimationState(MAGIC_FALL);
+								Debug.Log("No Magic");
+								//Play Sound
+							}
 						}
 						else if (playerRb.velocity.y > 0)
 						{
-							ChangeAnimationState(MAGIC_JUMP);
-							Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
+							if (magic_Controller_Script.currentMagic > 0)
+							{
+								ChangeAnimationState(MAGIC_JUMP);
+								Instantiate(icePrefab, magicPoint.position, magicPoint.rotation);
+
+								magic_Controller_Script.Use_Magic(10);
+							}
+							else if(magic_Controller_Script.currentMagic <= 0)
+                            {
+								ChangeAnimationState(MAGIC_JUMP);
+								Debug.Log("No Magic");
+								//Play Sound
+							}
 						}
 				    }
 
