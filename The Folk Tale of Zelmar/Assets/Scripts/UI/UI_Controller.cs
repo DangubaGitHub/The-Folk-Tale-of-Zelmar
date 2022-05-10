@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class UI_Controller : MonoBehaviour
 {
     PlayerHealthController player_Health_Controller_Script;
-    [SerializeField] GameObject player;
+    Key_Manager key_Manager_Script;
     Pick_Ups pick_Ups_Script;
-    [SerializeField] GameObject player_Pickups;
+    [SerializeField] GameObject player;
 
     [SerializeField] Image heart1;
     [SerializeField] Image heart2;
@@ -20,29 +20,31 @@ public class UI_Controller : MonoBehaviour
     [SerializeField] Text arrowsCount;
     [SerializeField] Text bombsCount;
     [SerializeField] Text cointCount;
-    [SerializeField] Text bigKey;
     [SerializeField] Text smallKey;
+
+    public GameObject bigKey;
 
 
     private void Awake()
     {
         player_Health_Controller_Script = player.GetComponent<PlayerHealthController>();
-        pick_Ups_Script = player_Pickups.GetComponent<Pick_Ups>();
+        pick_Ups_Script = player.GetComponent<Pick_Ups>();
+        key_Manager_Script = player.GetComponent<Key_Manager>();
     }
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
 
     public void UpdateHealthDisplay()
     {
-        switch(player_Health_Controller_Script.currentHealth)
+        switch (player_Health_Controller_Script.currentHealth)
         {
             case 3:
                 heart1.sprite = heartFull;
@@ -80,4 +82,20 @@ public class UI_Controller : MonoBehaviour
     {
         cointCount.text = pick_Ups_Script.coinCount.ToString();
     }
+
+    public void UpdateArrowCount()
+    {
+        arrowsCount.text = pick_Ups_Script.arrows.ToString();
+    }
+
+    public void UpdateBombsCount()
+    {
+        bombsCount.text = pick_Ups_Script.bombs.ToString();
+    }
+
+    public void UpdateSmallKeyCount()
+    {
+        smallKey.text = key_Manager_Script.smallKey.ToString();
+    }
+
 }

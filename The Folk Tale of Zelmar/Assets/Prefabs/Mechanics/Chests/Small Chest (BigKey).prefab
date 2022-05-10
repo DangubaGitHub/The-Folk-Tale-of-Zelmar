@@ -179,5 +179,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atChest: 0
   spawnPoint: {fileID: 4908687028089303642}
-  bigKey: {fileID: 6100391636383693265, guid: 79c1d73ca9b7ec24abeea5e59063a642, type: 3}
+  bigKeyPrefab: {fileID: 6100391636383693265, guid: 79c1d73ca9b7ec24abeea5e59063a642, type: 3}
   player: {fileID: 0}

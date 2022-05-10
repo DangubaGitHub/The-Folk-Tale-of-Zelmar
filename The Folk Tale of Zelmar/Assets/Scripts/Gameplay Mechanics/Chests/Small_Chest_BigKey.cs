@@ -8,7 +8,7 @@ public class Small_Chest_BigKey : MonoBehaviour
     public bool atChest;
 
     [SerializeField] Transform spawnPoint;
-    [SerializeField] GameObject bigKey;
+    [SerializeField] GameObject bigKeyPrefab;
 
     Animator chestAnim;
     string currentState;
@@ -16,12 +16,13 @@ public class Small_Chest_BigKey : MonoBehaviour
     const string OPEN = "Chest_Open";
 
     Pick_Ups pick_Ups_Script;
+    Key_Manager key_Manager_Script;
     [SerializeField] GameObject player;
 
     private void Awake()
     {
         chestAnim = GetComponent<Animator>();
-        pick_Ups_Script = player.GetComponent<Pick_Ups>();
+        key_Manager_Script = player.GetComponent<Key_Manager>();
     }
 
     void Start()
@@ -50,8 +51,8 @@ public class Small_Chest_BigKey : MonoBehaviour
 
         ChangeAnimationState(OPEN);
         isOpen = true;
-        GameObject item = Instantiate(bigKey, spawnPoint.position, Quaternion.identity);
-        pick_Ups_Script.hasBigKey = true;
+        GameObject item = Instantiate(bigKeyPrefab, spawnPoint.position, Quaternion.identity);
+        key_Manager_Script.hasBigKey = true;
         Destroy(item, 1f);
 
     }

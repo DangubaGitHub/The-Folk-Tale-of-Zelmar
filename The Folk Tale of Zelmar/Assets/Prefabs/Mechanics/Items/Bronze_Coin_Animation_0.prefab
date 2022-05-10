@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3755345082428316182}
   - component: {fileID: 3755345082428316185}
   - component: {fileID: 95923068898221055}
+  - component: {fileID: 934259559158454492}
   m_Layer: 0
   m_Name: Bronze_Coin_Animation_0
   m_TagString: Bronze Coin
@@ -122,3 +123,16 @@ CapsuleCollider2D:
   m_Offset: {x: -0.037371635, y: 0}
   m_Size: {x: 0.45449567, y: 0.5926603}
   m_Direction: 0
+--- !u!114 &934259559158454492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3755345082428316184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d048d4711039a408738d522631fdcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}

@@ -16,9 +16,13 @@ public class Level_Door : MonoBehaviour
     const string CLOSE = "Door_Closed";
     const string OPEN = "Door_Open";
 
+    Key_Manager key_Manager_Script;
+    [SerializeField] GameObject Player;
+
     private void Awake()
     {
         doorAnim = GetComponent<Animator>();
+        key_Manager_Script = Player.GetComponent<Key_Manager>();
     }
 
     void Start()
@@ -35,15 +39,16 @@ public class Level_Door : MonoBehaviour
         {
             if (Input.GetButtonDown("Use"))
             {
-                if (isClosed && hasKey)
+                if (isClosed && key_Manager_Script.smallKey > 0)
                 {
                     isOpen = true;
                     isClosed = false;
                     ChangeAnimationState(OPEN);
+                    key_Manager_Script.smallKey--;
                     Debug.Log("Door Opens");
                 }
 
-                else if(isClosed && !hasKey)
+                else if(isClosed && key_Manager_Script.smallKey <= 0)
                 {
                     Debug.Log("Door is Locked");
                 }

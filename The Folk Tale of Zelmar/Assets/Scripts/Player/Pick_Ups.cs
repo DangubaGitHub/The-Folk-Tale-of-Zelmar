@@ -7,11 +7,11 @@ public class Pick_Ups : MonoBehaviour
 
     public int smallKey;
     public int bombs;
-    bool bombsCollected;
+    int maxBombs = 10;
     public int arrows;
-    bool arrowsCollected;
+    int maxArrows = 30;
     public int coinCount;
-    bool coinCollected;
+    int maxCoins = 999;
 
     public bool hasBigKey;
 
@@ -34,6 +34,25 @@ public class Pick_Ups : MonoBehaviour
 
     void Update()
     {
+        if(arrows > maxArrows)
+        {
+            arrows = maxArrows;
+        }
+
+        if(bombs > maxBombs)
+        {
+            bombs = maxBombs;
+        }
+
+        if(coinCount > maxCoins)
+        {
+            coinCount = maxCoins;
+        }
+
+        uI_Controller_Script.UpdateCoinCount();
+        uI_Controller_Script.UpdateArrowCount();
+        uI_Controller_Script.UpdateBombsCount();
+
         if(bombs > 0)
         {
             inventory_Controller_Script.hasBomb = true;
@@ -41,36 +60,6 @@ public class Pick_Ups : MonoBehaviour
         else if(bombs <= 0)
         {
             inventory_Controller_Script.hasBomb = false;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.CompareTag("Bronze Coin") && !coinCollected)
-        {
-            coinCount++;
-            
-            uI_Controller_Script.UpdateCoinCount();
-            Destroy(other.gameObject);
-            coinCollected = true;
-        }
-
-        if(other.CompareTag("Silver Coin") && !coinCollected)
-        {
-            coinCount = coinCount + 5;
-           
-            uI_Controller_Script.UpdateCoinCount();
-            Destroy(other.gameObject);
-            coinCollected = true;
-        }
-
-        if(other.CompareTag("Gold Coin") && !coinCollected)
-        {
-            coinCount = coinCount + 10;
-            
-            uI_Controller_Script.UpdateCoinCount();
-            Destroy(other.gameObject);
-            coinCollected = true;
         }
     }
 }

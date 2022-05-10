@@ -15,13 +15,13 @@ public class Small_Chest_Key : MonoBehaviour
 
     const string OPEN = "Chest_Open";
 
-    Pick_Ups pick_Ups_Script;
+    Key_Manager key_Manager_Script;
     [SerializeField] GameObject player;
 
     private void Awake()
     {
         chestAnim = GetComponent<Animator>();
-        pick_Ups_Script = player.GetComponent<Pick_Ups>();
+        key_Manager_Script = player.GetComponent<Key_Manager>();
     }
 
     void Start()
@@ -51,7 +51,7 @@ public class Small_Chest_Key : MonoBehaviour
         ChangeAnimationState(OPEN);
         isOpen = true;
         GameObject item = Instantiate(key, spawnPoint.position, Quaternion.identity);
-        pick_Ups_Script.smallKey++;
+        key_Manager_Script.smallKey++;
         Destroy(item, 1f);
 
     }

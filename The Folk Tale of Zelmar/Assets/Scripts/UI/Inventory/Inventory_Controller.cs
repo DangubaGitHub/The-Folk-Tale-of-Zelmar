@@ -165,6 +165,7 @@ public class Inventory_Controller : MonoBehaviour
         player_Controller_Script.useBottleGreen = false;
 
         //bomb_Icon.SetActive(false);
+        bomb_Icon.SetActive(false);
         bow_Icon.SetActive(true);
         fire_Icon.SetActive(false);
         ice_Icon.SetActive(false);
@@ -182,6 +183,7 @@ public class Inventory_Controller : MonoBehaviour
         player_Controller_Script.useBottleGreen = false;
 
         //bomb_Icon.SetActive(false);
+        bomb_Icon.SetActive(false);
         bow_Icon.SetActive(false);
         fire_Icon.SetActive(true);
         ice_Icon.SetActive(false);
@@ -199,6 +201,7 @@ public class Inventory_Controller : MonoBehaviour
         player_Controller_Script.useBottleGreen = false;
 
         //bomb_Icon.SetActive(false);
+        bomb_Icon.SetActive(false);
         bow_Icon.SetActive(false);
         fire_Icon.SetActive(false);
         ice_Icon.SetActive(true);
@@ -216,6 +219,7 @@ public class Inventory_Controller : MonoBehaviour
         player_Controller_Script.useBottleGreen = false;
 
         //bomb_Icon.SetActive(false);
+        bomb_Icon.SetActive(false);
         bow_Icon.SetActive(false);
         fire_Icon.SetActive(false);
         ice_Icon.SetActive(false);
@@ -233,6 +237,7 @@ public class Inventory_Controller : MonoBehaviour
         player_Controller_Script.useBottleGreen = true;
 
         //bomb_Icon.SetActive(false);
+        bomb_Icon.SetActive(false);
         bow_Icon.SetActive(false);
         fire_Icon.SetActive(false);
         ice_Icon.SetActive(false);

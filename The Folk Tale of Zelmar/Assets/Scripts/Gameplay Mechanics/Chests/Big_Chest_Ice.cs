@@ -16,7 +16,8 @@ public class Big_Chest_Ice : MonoBehaviour
 
     const string OPEN = "Big_Chest_Open";
 
-    Pick_Ups pick_Ups_Script;
+    
+    Key_Manager key_Manager_Script;
     [SerializeField] GameObject player;
 
     Inventory_Controller inventory_Controller_Script;
@@ -25,7 +26,7 @@ public class Big_Chest_Ice : MonoBehaviour
     private void Awake()
     {
         chestAnim = GetComponent<Animator>();
-        pick_Ups_Script = player.GetComponent<Pick_Ups>();
+        key_Manager_Script = player.GetComponent<Key_Manager>();
         inventory_Controller_Script = uiCanvas.GetComponent<Inventory_Controller>();
     }
 
@@ -41,7 +42,7 @@ public class Big_Chest_Ice : MonoBehaviour
         {
             if (Input.GetButtonDown("Use"))
             {
-                if (!isOpen && pick_Ups_Script.hasBigKey)
+                if (!isOpen && key_Manager_Script.hasBigKey)
                 {
                     Open_Chest();
                 }
@@ -58,7 +59,6 @@ public class Big_Chest_Ice : MonoBehaviour
         isOpen = true;
         GameObject item = Instantiate(ice, spawnPoint.position, Quaternion.identity);
         inventory_Controller_Script.hasIce = true;
-        pick_Ups_Script.hasBigKey = false;
         Destroy(item, 1f);
 
     }

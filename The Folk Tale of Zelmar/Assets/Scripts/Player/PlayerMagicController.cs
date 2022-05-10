@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMagicController : MonoBehaviour
 {
     
-    public int maxMagic = 20;
+    public int maxMagic = 50;
     public int currentMagic;
 
     public UI_Magic_Slider magic_Slider;
