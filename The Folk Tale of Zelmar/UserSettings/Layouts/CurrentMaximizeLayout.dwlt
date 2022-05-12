@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 128
+  controlID: 19137
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -44,8 +44,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1097.7144
-    y: 809.7143
+    x: 0
+    y: 749.2857
     width: 593.8571
     height: 383.28583
   m_ViewDataDictionary: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 129
+  controlID: 19138
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 130
+  controlID: 19139
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -439,9 +439,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 24.977074, y: 1.4429796, z: 22.21254}
+    m_Target: {x: 82.90593, y: -2.9898617, z: -0.07164809}
     speed: 2
-    m_Value: {x: 24.977074, y: 1.4429796, z: 22.21254}
+    m_Value: {x: 82.90593, y: -2.9898617, z: -0.07164809}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -492,9 +492,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 9.804711
+    m_Target: 3.3105862
     speed: 2
-    m_Value: 9.804711
+    m_Value: 3.3105862
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -568,10 +568,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1280.6667
-    y: 943.3334
-    width: 753
-    height: 455.00006
+    x: 1097.7144
+    y: 809.7143
+    width: 593.8571
+    height: 383.28583
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -585,6 +585,7 @@ MonoBehaviour:
     - {fileID: -2712098186828577184, guid: ee09c123976e1ab4ea0b7d4d1befc7a0, type: 2}
     - {fileID: 3983513175896418530, guid: cd0b432619adf674c96a67f0afbb70ea, type: 2}
     - {fileID: 6771508755511172107, guid: 7334a3862187c5b409d773aa7b2f1c8d, type: 2}
+    - {fileID: -1748470094126366776, guid: 697b9ac3514f4ce498aaa6103e9dc179, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.57730323
       e01: 0
@@ -602,14 +603,30 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.8121803
+    - e00: 0.39726204
       e01: 0
       e02: 0
-      e03: 147.91881
+      e03: 141.09799
       e10: 0
-      e11: 0.8121803
+      e11: 0.39726204
       e12: 0
-      e13: 27.2055
+      e13: 92.110245
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -699,9 +716,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 7dc05951fe00d1946aef76655f42cf68, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 697b9ac3514f4ce498aaa6103e9dc179, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 8081117624731264550, guid: 7dc05951fe00d1946aef76655f42cf68, type: 2}
+  - m_Target: {fileID: -1748470094126366776, guid: 697b9ac3514f4ce498aaa6103e9dc179, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -744,7 +761,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 25090
+  m_LastSelectedObjectID: -50106
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -765,10 +782,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1280.6667
-    y: 943.3334
-    width: 753
-    height: 455.00006
+    x: 1097.7144
+    y: 809.7143
+    width: 593.8571
+    height: 383.28583
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -777,7 +794,7 @@ MonoBehaviour:
     m_CachedPref: -50
     m_ControlHash: 1964396721
     m_PrefName: Preview_TilemapBrushInspector
-  m_Palette: {fileID: 4017252908761015108, guid: 87fb596c5290a9f4dbab3b5060ba1e5e, type: 3}
+  m_Palette: {fileID: 1225762233011987331, guid: 31ad4fde6f5e5c446a90b7c81bb93462, type: 3}
   m_DrawGridGizmo: 1
   m_DrawGizmos: 0
 --- !u!114 &11
@@ -804,7 +821,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 101
+  controlID: 19069
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -829,7 +846,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 102
+  controlID: 19070
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -889,7 +906,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 00f1fffffefaffff60600000866000000e610000bc610000e461000002620000
+      m_ExpandedIDs: fefaffff606000000e61000080610000bc61000002620000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -974,7 +991,7 @@ MonoBehaviour:
     m_CachedPref: -315
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: -50106
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -1076,23 +1093,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI
+    - Assets/Scripts/Gameplay Mechanics/Mechanics No Damage
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/UI
+  - Assets/Scripts/Gameplay Mechanics/Mechanics No Damage
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Game Dev\GitHub\The-Folk-Tale-of-Zelmar\The Folk Tale of
     Zelmar
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 199.57135}
-    m_SelectedIDs: 406f0000
-    m_LastClickedID: 28480
-    m_ExpandedIDs: 00000000346f0000366f0000386f00003a6f00003c6f00003e6f0000406f0000466f0000486f000000ca9a3b
+    scrollPos: {x: 0, y: 36.714294}
+    m_SelectedIDs: 7a080100
+    m_LastClickedID: 67706
+    m_ExpandedIDs: 00000000346f0000366f0000386f00003a6f00003c6f00003e6f0000406f0000466f0000de6f00004e70000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1120,7 +1137,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000346f0000366f0000386f00003a6f00003c6f00003e6f0000406f0000
+    m_ExpandedIDs: 00000000346f0000366f0000386f00003a6f00003c6f00003e6f0000406f0000466f0000de6f00004e70000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1145,24 +1162,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000a66100008463000092610000786e0000a2740000745e000018600000e8240000d824000000000000066b0000ca610000046d0000
+    m_SelectedInstanceIDs: 463cffff
+    m_LastClickedInstanceID: -50106
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c6230000a66100008463000092610000786e0000a2740000745e000018600000e8240000d824000000000000066b0000ca610000046d000048fa000042700000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Items
-      m_OriginalName: Items
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 28472
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 18}
     m_CreateAssetUtility:
@@ -1175,4 +1192,4 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 146.28574
+  m_DirectoriesAreaWidth: 145.28574
