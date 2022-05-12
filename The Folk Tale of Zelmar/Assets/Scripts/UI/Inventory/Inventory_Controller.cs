@@ -33,11 +33,11 @@ public class Inventory_Controller : MonoBehaviour
     public bool inventoryOn;
 
     [Header("UI Item Display")]
-    [SerializeField] GameObject bomb_Icon;
+    public GameObject bomb_Icon;
     [SerializeField] GameObject fire_Icon;
     [SerializeField] GameObject ice_Icon;
-    [SerializeField] GameObject bottle_Red_Icon;
-    [SerializeField] GameObject bottle_Green_Icon;
+    public GameObject bottle_Red_Icon;
+    public GameObject bottle_Green_Icon;
     //[SerializeField] GameObject bottle_Empty_Icon;
     [SerializeField] GameObject bow_Icon;
 

@@ -85,24 +85,29 @@ public class PlayerController : MonoBehaviour
 	////////////////////////////// OTHER SCRIPTS //////////
 
 	[Header("Scripts")]
-	Inventory_Controller inventory_Controller_Script;
-	[SerializeField] GameObject inventory;
-	Pick_Ups pick_Ups_Script;
-	[SerializeField] GameObject player;
-	//[SerializeField] GameObject smallChestBombs;
-	//[SerializeField] GameObject smallChestArrows;
-	PlayerMagicController magic_Controller_Script;
-	[SerializeField] GameObject playerMagic;
+	[SerializeField] GameObject Player;
+	[SerializeField] GameObject UI_Canvas;
+	[SerializeField] GameObject UI_Magic_Bar;
 
+	Inventory_Controller inventory_Controller_Script;
+	UI_Controller uI_Controller_Script;
+	Pick_Ups pick_Ups_Script;
+	PlayerMagicController magic_Controller_Script;
+	PlayerHealthController player_Health_Controller_Script;
+	UI_Magic_Slider uI_Magic_Slider_Script;
+	
 
 	private void Awake()
     {
 		playerRb = GetComponent<Rigidbody2D>();
 		playerSr = GetComponent<SpriteRenderer>();
 		playerAnim = GetComponent<Animator>();
-		inventory_Controller_Script = inventory.GetComponent<Inventory_Controller>();
-		pick_Ups_Script = player.GetComponent<Pick_Ups>();
-		magic_Controller_Script = playerMagic.GetComponent<PlayerMagicController>();
+		inventory_Controller_Script = UI_Canvas.GetComponent<Inventory_Controller>();
+		uI_Controller_Script = UI_Canvas.GetComponent<UI_Controller>();
+		pick_Ups_Script = Player.GetComponent<Pick_Ups>();
+		magic_Controller_Script = Player.GetComponent<PlayerMagicController>();
+		player_Health_Controller_Script = Player.GetComponent<PlayerHealthController>();
+		uI_Magic_Slider_Script = UI_Magic_Bar.GetComponent<UI_Magic_Slider>();
 	}
 
     private void Start()
@@ -126,8 +131,6 @@ public class PlayerController : MonoBehaviour
 			if (onLand)
 			{
 				isGrounded = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
-
-
 
 				if (playerRb.velocity.y > 0.1)
 				{
@@ -154,13 +157,10 @@ public class PlayerController : MonoBehaviour
 					jumpedDuringSprint = false;
 				}
 
-				
 				Vector3 characterScale = transform.localScale;
 
 				if (playerRb.velocity.x < -0.1f)
 				{
-					
-
 					characterScale.x = -1;
 					//playerSr.transform.eulerAngles = new Vector3(0, 180, 0);
 					//playerSr.flipX = true;
@@ -170,8 +170,6 @@ public class PlayerController : MonoBehaviour
 				}
 				else if (playerRb.velocity.x > 0.1f)
 				{
-					
-
 					characterScale.x = 1;
 					//playerSr.transform.eulerAngles = new Vector3(0, 0, 0);
 					//playerSr.flipX = false;
@@ -227,7 +225,6 @@ public class PlayerController : MonoBehaviour
 						//Play Sound
 					}
 
-
 					if (useBow && pick_Ups_Script.arrows > 0)
 					{
 						ChangeAnimationState(BOW);
@@ -240,6 +237,22 @@ public class PlayerController : MonoBehaviour
 						Debug.Log("No Arrows");
 						//Play Sound
                     }
+
+					if (useBottleRed && player_Health_Controller_Script.currentHealth < player_Health_Controller_Script.maxHealth)
+					{
+						player_Health_Controller_Script.currentHealth = player_Health_Controller_Script.maxHealth;
+						uI_Controller_Script.UpdateHealthDisplay();
+						inventory_Controller_Script.hasBottleRed = false;
+						inventory_Controller_Script.bottle_Red_Icon.SetActive(false);
+					}
+
+					if (useBottleGreen && magic_Controller_Script.currentMagic < magic_Controller_Script.maxMagic)
+					{
+						magic_Controller_Script.currentMagic = magic_Controller_Script.maxMagic;
+						uI_Magic_Slider_Script.SetMaxMagic(magic_Controller_Script.maxMagic);
+						inventory_Controller_Script.hasBottleGreen = false;
+						inventory_Controller_Script.bottle_Green_Icon.SetActive(false);
+					}
 
 					Invoke("AttackComplete", 0.4f);
 				}

@@ -60,6 +60,7 @@ public class Pick_Ups : MonoBehaviour
         else if(bombs <= 0)
         {
             inventory_Controller_Script.hasBomb = false;
+            inventory_Controller_Script.bomb_Icon.SetActive(false);
         }
     }
 }
