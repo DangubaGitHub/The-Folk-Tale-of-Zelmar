@@ -11,9 +11,13 @@ public class Brazier_Torch : MonoBehaviour
 
     public bool torchLitt;
 
+    Wood_Blockade wood_Blockade_Script;
+    [SerializeField] GameObject wood_Blockade;
+
     private void Awake()
     {
         torchAnim = GetComponent<Animator>();
+        wood_Blockade_Script = wood_Blockade.GetComponent<Wood_Blockade>();
     }
 
     void Start()
@@ -28,11 +32,28 @@ public class Brazier_Torch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Fire Ball"))
+        if (other.CompareTag("Fire Ball") && !torchLitt)
         {
             ChangeAnimationState(TORCH_FIRE);
             torchLitt = true;
             Destroy(other.gameObject);
+
+            if (wood_Blockade_Script.torch_1_Litt == false)
+            {
+                wood_Blockade_Script.torch_1_Litt = true;
+            }
+            else if(wood_Blockade_Script.torch_2_Litt == false)
+            {
+                wood_Blockade_Script.torch_2_Litt = true;
+            }
+            else if(wood_Blockade_Script.torch_3_Litt == false)
+            {
+                wood_Blockade_Script.torch_3_Litt = true;
+            }
+            else if(wood_Blockade_Script.torch_4_Litt == false)
+            {
+                wood_Blockade_Script.torch_4_Litt = true;
+            }
         }
     }
 
