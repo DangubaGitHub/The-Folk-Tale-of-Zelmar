@@ -8,7 +8,7 @@ public class Level_Door : MonoBehaviour
     bool isClosed;
     bool isOpen;
     bool atDoor;
-    public bool hasKey;
+   //public bool hasKey;
 
     Animator doorAnim;
     string currentState;
@@ -48,19 +48,16 @@ public class Level_Door : MonoBehaviour
                     Debug.Log("Door Opens");
                 }
 
-                else if(isClosed && key_Manager_Script.smallKey <= 0)
+                else if (isClosed && key_Manager_Script.smallKey <= 0)
                 {
                     Debug.Log("Door is Locked");
                 }
+            }
 
-                if (isOpen)
-                {
-                    if (Input.GetButtonDown("Enter"))
-                    {
-                        Debug.Log("Entering Door");
-                        //SceneManager.LoadScene(???);
-                    }
-                }
+            if (Input.GetButtonDown("Enter") && isOpen)
+            {
+                Debug.Log("Entering Door");
+                //SceneManager.LoadScene(???);
             }
         }
     }
