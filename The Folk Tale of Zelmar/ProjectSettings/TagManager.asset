@@ -15,6 +15,7 @@ TagManager:
   - Silver Coin
   - Bronze Coin
   - Fire Ball
+  - Platform
   layers:
   - Default
   - TransparentFX

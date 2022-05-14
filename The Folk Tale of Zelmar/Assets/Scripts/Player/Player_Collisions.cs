@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Player_Collisions : MonoBehaviour
 {
-
+    /*
     public bool haskey;
     public bool hasBigKey;
     public bool atSmallChest;
     public bool atBigChest;
     public bool atDoor;
+    */
 
     void Start()
     {
@@ -21,6 +22,23 @@ public class Player_Collisions : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Platform")
+        {
+            transform.parent = other.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Platform")
+        {
+            transform.parent = null;
+        }
+    }
+
+    /*
     public void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Small Chest"))
@@ -56,4 +74,5 @@ public class Player_Collisions : MonoBehaviour
             atDoor = false;
         }
     }
+    */
 }
