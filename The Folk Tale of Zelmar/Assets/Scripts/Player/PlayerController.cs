@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] bool inWater;
 	[SerializeField] bool onLand;
 
+	public bool stopInput;
+
 	bool atMaxSpeed;
 	bool isAttacking;
 	bool isAirAttacking;
@@ -119,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
     void Update() ////////////////////////////////////////////////////////////////////////////////////////// UPDATE //////////////////////////////
 	{
-		if (inventory_Controller_Script.inventoryOn == false)
+		if (inventory_Controller_Script.inventoryOn == false && !stopInput)
 		{
 			//inWater = Physics2D.OverlapCircle(waterPoint.position, .2f, whatIsWater);
 
@@ -388,7 +390,7 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate() ////////////////////////////////////////////////////////////////////////////////////////// FIXED UPDATE //////////////////////////////
 	{
-		if (onLand)
+		if (onLand && !stopInput)
 		{
 			if (Input.GetButton("Run") && Time.time - sprintTimer > sprintDelay && isGrounded || jumpedDuringSprint)
 			{
