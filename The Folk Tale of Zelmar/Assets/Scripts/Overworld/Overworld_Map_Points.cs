@@ -5,12 +5,12 @@ using UnityEngine;
 public class Overworld_Map_Points : MonoBehaviour
 {
 
-    [SerializeField] Overworld_Map_Points up;
-    [SerializeField] Overworld_Map_Points right;
-    [SerializeField] Overworld_Map_Points down;
-    [SerializeField] Overworld_Map_Points left;
+    public Overworld_Map_Points up;
+    public Overworld_Map_Points right;
+    public Overworld_Map_Points down;
+    public Overworld_Map_Points left;
 
-    [SerializeField] bool isLevel;
+    public bool isLevel;
 
     void Start()
     {
