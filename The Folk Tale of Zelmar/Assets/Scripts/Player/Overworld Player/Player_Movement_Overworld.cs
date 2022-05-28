@@ -5,10 +5,13 @@ using UnityEngine;
 public class Player_Movement_Overworld : MonoBehaviour
 {
 
+    public static Player_Movement_Overworld instance;
+
     float moveSpeed = 5f;
 
 
     public Overworld_Map_Points currentPoint;
+   
 
     Animator playerAnim;
 
@@ -20,8 +23,12 @@ public class Player_Movement_Overworld : MonoBehaviour
     const string DOWN_O = "Player_Down_Overworld";
     const string LEFT_O = "Player_Left_Overworld";
 
+    
+
+
     private void Awake()
     {
+        instance = this;
         playerAnim = GetComponent<Animator>();
     }
 
